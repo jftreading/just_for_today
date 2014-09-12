@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class TamangAppDbaseHelper {
+public class DBHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "tamangapp.db";
     private static final String TABLE_NAME = "updatesponsor";
@@ -17,7 +17,7 @@ public class TamangAppDbaseHelper {
     private TamangAppOpenHelper openHelper;
     private SQLiteDatabase database;
 
-    public TamangAppDbaseHelper(Context context) {
+    public DBHelper(Context context) {
         openHelper = new TamangAppOpenHelper(context);
         database = openHelper.getWritableDatabase();
     }
