@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/nalogo"
+    android:padding="0dp"
+    >
+<TextView
+    android:id="@+id/contact_name"
+    android:text="Vanni"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="20dp"
+    android:textSize="20dp"
+    />
+<TextView
+    android:id="@+id/contact_phone"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:textSize="10dp"
+    android:text="111-222-3333"
+    android:layout_below="@+id/contact_name"
+    android:layout_alignLeft="@+id/contact_name"
+    />
+<ImageButton
+    android:id="@+id/update_contact"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/contact_phone"
+    android:layout_alignLeft="@+id/contact_name"
+    android:layout_marginTop="10dp"
+    android:onClick="onUpdateContact"
+    android:src="@drawable/button_update"
+    android:background="@null"
+    />
+<ImageView
+    android:id="@+id/portrait"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:background="@drawable/portrait"
+    android:adjustViewBounds="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignTop="@+id/contact_name"
+    android:layout_marginRight="20dp"
+    />
+<EditText
+    android:id="@+id/etId"
+    android:paddingRight="80dp"
+    android:layout_marginTop="10dp"      
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/update_contact"
+    android:hint="@string/etHint"
+    android:maxLines="5"
+    android:maxLength="160"
+    />
+<ImageButton
+    android:id="@+id/send_btn"
+    android:background="@null"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@+id/etId"
+    android:layout_alignBottom="@+id/etId"
+    android:layout_alignRight="@+id/etId"
+    android:src="@drawable/button_send"
+    android:onClick="onSendButtonClick"
+    />
+<ImageButton
+    android:id="@+id/call_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@+id/update_contact"
+    android:layout_alignParentRight="true"
+    android:background="@null"
+    android:onClick="onCallButtonClick"
+    android:src="@drawable/button_call"
+    />
+</RelativeLayout>
