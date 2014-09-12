@@ -123,7 +123,7 @@ public class MainActivity extends Activity
 							
 						}
 						else {							
-							//final ProgressDialog dialog = ProgressDialog.show(this, "Sending", "Sending text message");
+							final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "Sending", "Sending text message");
 							Thread th = new Thread() {
 							    @Override
 							    public void run() {
@@ -174,7 +174,7 @@ public class MainActivity extends Activity
 							                            Toast.LENGTH_LONG);
 							                        toast.setGravity(Gravity.CENTER, 0, 0);
 							                        toast.show();
-							                        //dialog.dismiss();
+							                        dialog.dismiss();
 							                }
 
 							            }, new IntentFilter(SENT));
