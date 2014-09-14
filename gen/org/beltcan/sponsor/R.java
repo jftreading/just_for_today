@@ -8,6 +8,9 @@
 package org.beltcan.sponsor;
 
 public final class R {
+    public static final class array {
+        public static final int twelve_steps=0x7f050000;
+    }
     public static final class attr {
     }
     public static final class drawable {
@@ -25,42 +28,32 @@ public final class R {
         public static final int update_btn_pressed=0x7f02000b;
     }
     public static final class id {
-        public static final int about=0x7f060008;
-        public static final int call_btn=0x7f060006;
-        public static final int contact_name=0x7f060000;
-        public static final int contact_phone=0x7f060001;
-        public static final int etId=0x7f060004;
-        public static final int portrait=0x7f060003;
-        public static final int send_btn=0x7f060005;
-        public static final int steps=0x7f060007;
-        public static final int update_contact=0x7f060002;
+        public static final int call_btn=0x7f070006;
+        public static final int contact_name=0x7f070000;
+        public static final int contact_phone=0x7f070001;
+        public static final int etId=0x7f070004;
+        public static final int lvId=0x7f070007;
+        public static final int meeting=0x7f070009;
+        public static final int portrait=0x7f070003;
+        public static final int send_btn=0x7f070005;
+        public static final int steps=0x7f070008;
+        public static final int update_contact=0x7f070002;
     }
     public static final class layout {
-        public static final int activity_about=0x7f030000;
-        public static final int main=0x7f030001;
+        public static final int main=0x7f030000;
+        public static final int meeting=0x7f030001;
+        public static final int row=0x7f030002;
+        public static final int twelve_steps=0x7f030003;
     }
     public static final class menu {
-        public static final int options_menu=0x7f050000;
+        public static final int options_menu=0x7f060000;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
-        public static final int etHint=0x7f040001;
-        public static final int om1=0x7f040002;
-        public static final int om2=0x7f040003;
+        public static final int et_hint=0x7f040001;
+        public static final int option_one=0x7f040002;
+        public static final int option_two=0x7f040003;
         public static final int show_map=0x7f040004;
-        public static final int step_eight=0x7f040011;
-        public static final int step_eleven=0x7f040014;
-        public static final int step_five=0x7f04000e;
-        public static final int step_four=0x7f04000d;
-        public static final int step_nine=0x7f040012;
-        public static final int step_one=0x7f04000a;
-        public static final int step_seven=0x7f040010;
-        public static final int step_six=0x7f04000f;
-        public static final int step_ten=0x7f040013;
-        public static final int step_three=0x7f04000c;
-        public static final int step_twelve=0x7f040015;
-        public static final int step_two=0x7f04000b;
-        public static final int twelve_steps=0x7f040009;
         public static final int verse=0x7f040005;
         public static final int what=0x7f040006;
         public static final int when=0x7f040008;

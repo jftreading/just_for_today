@@ -11,7 +11,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="org.beltcan.sponsor.AboutActivity"></activity>
+        <activity android:name="org.beltcan.sponsor.MeetingActivity"></activity>
+        <activity android:name="org.beltcan.sponsor.TwelveStepsActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>

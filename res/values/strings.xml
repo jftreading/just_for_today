@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Call B4U Drink</string>
-    <string name="etHint">Enter message here</string>
-    <string name="om1">The 12 Steps</string>
-    <string name="om2">Meeting</string>
+    <string name="et_hint">Enter message here</string>
+    <string name="option_one">The 12 Steps</string>
+    <string name="option_two">Meeting</string>
     <string name="show_map">Show Map</string>
     <string name="verse">\"For where two or three gather together
     because they are mine, I am there among them.\" - Matthew 18:20</string>
@@ -11,31 +11,32 @@
     <string name="where">Healing Path Foundation-HP, Inc.
     \n#25 Newport st., cor. Marlboro st., East Fairview, Quezon City</string>
     <string name="when">Every Sundays 9:00 - 10:00 am</string>
-    <string name="twelve_steps">The 12 Steps</string>
-    <string name="step_one">1. We admitted that we were powerless over our addiction, that
-    our lives had become unmanageable.</string>
-    <string name="step_two">2. We came to believe that a Power greater than ourselves
-    could restore us to sanity.</string>
-    <string name="step_three">3. We made a decision to turn our will and our lives over to the
-    care of God as we understood Him.</string>
-    <string name="step_four">4. We made a searching and fearless moral inventory of
-    ourselves.</string>
-    <string name="step_five">5. We admitted to God, to ourselves, and to another human
-    being the exact nature of our wrongs.</string>
-    <string name="step_six">6. We were entirely ready to have God remove all these defects
-    of character.</string>
-    <string name="step_seven">7. We humbly asked Him to remove our shortcomings.</string>
-    <string name="step_eight">8. We made a list of all persons we had harmed and became
-    willing to make amends to them all.</string>
-    <string name="step_nine">9. We made direct amends to such people wherever possible,
-    except when to do so would injure them or others.</string>
-    <string name="step_ten">10. We continued to take personal inventory and when we were
-    wrong promptly admitted it.</string>
-    <string name="step_eleven">11. We sought through prayer and meditation to improve our
-    conscious contact with God as we understood Him, praying
-    only for knowledge of His will for us and the power to carry
-    that out.</string>
-    <string name="step_twelve">12. Having had a spiritual awakening as a result of these steps,
-    we tried to carry this message to addicts, and to practice
-    these principles in all our affairs.</string>
+    <string-array name="twelve_steps">
+                <item>1. We admitted that we were powerless over our addiction, that
+our lives had become unmanageable.</item>
+                <item>2. We came to believe that a Power greater than ourselves
+could restore us to sanity.</item>
+                <item>3. We made a decision to turn our will and our lives over to the
+care of God as we understood Him.</item>
+                <item>4. We made a searching and fearless moral inventory of
+ourselves.</item>
+                <item>5. We admitted to God, to ourselves, and to another human
+being the exact nature of our wrongs.</item>
+                <item>6. We were entirely ready to have God remove all these defects
+of character.</item>
+                <item>7. We humbly asked Him to remove our shortcomings.</item>
+                <item>8. We made a list of all persons we had harmed and became
+willing to make amends to them all.</item>
+                <item>9. We made direct amends to such people wherever possible,
+except when to do so would injure them or others.</item>
+                <item>10. We continued to take personal inventory and when we were
+wrong promptly admitted it.</item>
+                <item>11. We sought through prayer and meditation to improve our
+conscious contact with God as we understood Him, praying
+only for knowledge of His will for us and the power to carry
+that out.</item>
+                <item>12. Having had a spiritual awakening as a result of these steps,
+we tried to carry this message to addicts, and to practice
+these principles in all our affairs.</item>
+        </string-array>
 </resources>

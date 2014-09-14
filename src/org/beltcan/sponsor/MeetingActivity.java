@@ -8,13 +8,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 
-public class AboutActivity extends Activity
+public class MeetingActivity extends Activity
 {
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.meeting);
 	}
 	
 	public void onClick(View view) 

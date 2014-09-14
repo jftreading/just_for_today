@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/steps"
-    android:title="@string/om1" />
-  <item android:id="@+id/about"
-    android:title="@string/om2" />
+    android:title="@string/option_one" />
+  <item android:id="@+id/meeting"
+    android:title="@string/option_two" />
 </menu>

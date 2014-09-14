@@ -63,13 +63,8 @@ public class MainActivity extends Activity
         
         if (!cursor.isClosed()) {
 			cursor.close();
-		}
-        
-        
-        
-        textMessage = (EditText) findViewById(R.id.etId);
-        
-        
+		}        
+        textMessage = (EditText) findViewById(R.id.etId);                
     }   
 
     private void renderContact(Uri uri) {
@@ -312,18 +307,19 @@ public class MainActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) 
     {
-		Intent intent=null;
+		Intent steps_intent = null;
+		Intent meeting_intent = null;
 		
         switch (item.getItemId()) 
         {
             case R.id.steps:
-                Toast.makeText(MainActivity.this, "The 12 Steps", 
-                    Toast.LENGTH_SHORT).show();
+                steps_intent = new Intent(this, TwelveStepsActivity.class);
+                startActivity(steps_intent);
                 return true;
 
-            case R.id.about:
-                intent =  new Intent(this, AboutActivity.class);
-                startActivity(intent);
+            case R.id.meeting:
+                meeting_intent = new Intent(this, MeetingActivity.class);
+                startActivity(meeting_intent);
                 return true;
 
             default:

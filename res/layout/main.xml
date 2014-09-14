@@ -55,7 +55,7 @@
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
     android:layout_below="@+id/update_contact"
-    android:hint="@string/etHint"
+    android:hint="@string/et_hint"
     android:maxLines="5"
     android:maxLength="160"
     />
