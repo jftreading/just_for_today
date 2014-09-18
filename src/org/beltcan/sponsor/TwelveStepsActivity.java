@@ -6,8 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class TwelveStepsActivity extends Activity {
-	private ListView lv;
-	private ArrayAdapter<String> la;
+	private ListView lv;	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
@@ -18,10 +17,9 @@ public class TwelveStepsActivity extends Activity {
 	}
 
 	private void setupUI() {
+		setTitle(R.string.title_one);
 		lv = (ListView) findViewById(R.id.lvId);
 		String[] twelve_steps = getResources().getStringArray(R.array.twelve_steps);
 		lv.setAdapter(new ArrayAdapter<String>(this, R.layout.row, twelve_steps));
-	}
-	
-	
+	}	
 }

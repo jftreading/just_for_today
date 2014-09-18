@@ -15,11 +15,12 @@ public class MeetingActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meeting);
+        setTitle(R.string.title_two);
 	}
 	
 	public void onClick(View view) 
     {
-        Intent intent=new Intent(android.content.Intent.ACTION_VIEW);
+		Intent intent=new Intent(android.content.Intent.ACTION_VIEW);
         intent.setData(Uri.parse("geo: 14.708956, 121.078503"));
         startActivity(intent);    
     }
