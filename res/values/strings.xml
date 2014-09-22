@@ -4,7 +4,7 @@
     <string name="title_one">The Twelve Steps - Narcotics Anonymous</string><string name="title_two">Schedule</string><string name="et_hint">Enter message here</string>
     <string name="option_one">The 12 Steps</string>
     <string name="option_two">NA Meeting</string>
-    <string name="show_map">Show Map</string>
+    <string name="button_one">Show Map</string>
     <string name="verse">\"For where two or three gather together
     because they are mine, I am there among them.\" - Matthew 18:20</string>
     <string name="what">Come and join our Meeting:</string>
@@ -39,6 +39,7 @@ that out.</item>
 we tried to carry this message to addicts, and to practice
 these principles in all our affairs.</item>
         </string-array>
+    <color name="headfirst">#ff8d8d8d</color>
     
     
 </resources>

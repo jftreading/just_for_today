@@ -13,6 +13,9 @@ public final class R {
     }
     public static final class attr {
     }
+    public static final class color {
+        public static final int headfirst=0x7f060000;
+    }
     public static final class drawable {
         public static final int button_call=0x7f020000;
         public static final int button_send=0x7f020001;
@@ -28,16 +31,22 @@ public final class R {
         public static final int update_btn_pressed=0x7f02000b;
     }
     public static final class id {
-        public static final int call_btn=0x7f070006;
-        public static final int contact_name=0x7f070000;
-        public static final int contact_phone=0x7f070001;
-        public static final int etId=0x7f070004;
-        public static final int lvId=0x7f070007;
-        public static final int meeting=0x7f070009;
-        public static final int portrait=0x7f070003;
-        public static final int send_btn=0x7f070005;
-        public static final int steps=0x7f070008;
-        public static final int update_contact=0x7f070002;
+        public static final int Button1=0x7f08000c;
+        public static final int RelativeLayout1=0x7f080007;
+        public static final int TextView1=0x7f080008;
+        public static final int TextView2=0x7f080009;
+        public static final int TextView3=0x7f08000a;
+        public static final int TextView4=0x7f08000b;
+        public static final int call_btn=0x7f080006;
+        public static final int contact_name=0x7f080000;
+        public static final int contact_phone=0x7f080001;
+        public static final int etId=0x7f080004;
+        public static final int lvId=0x7f08000d;
+        public static final int meeting=0x7f08000f;
+        public static final int portrait=0x7f080003;
+        public static final int send_btn=0x7f080005;
+        public static final int steps=0x7f08000e;
+        public static final int update_contact=0x7f080002;
     }
     public static final class layout {
         public static final int main=0x7f030000;
@@ -46,14 +55,14 @@ public final class R {
         public static final int twelve_steps=0x7f030003;
     }
     public static final class menu {
-        public static final int options_menu=0x7f060000;
+        public static final int options_menu=0x7f070000;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+        public static final int button_one=0x7f040006;
         public static final int et_hint=0x7f040003;
         public static final int option_one=0x7f040004;
         public static final int option_two=0x7f040005;
-        public static final int show_map=0x7f040006;
         public static final int title_one=0x7f040001;
         public static final int title_two=0x7f040002;
         public static final int verse=0x7f040007;
