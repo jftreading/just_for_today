@@ -5,12 +5,16 @@
     <string name="option_one">The 12 Steps</string>
     <string name="option_two">NA Meeting</string>
     <string name="button_one">Show Map</string>
-    <string name="verse">\"For where two or three gather together
-    because they are mine, I am there among them.\" - Matthew 18:20</string>
-    <string name="what">Come and join our Meeting:</string>
-    <string name="where">Healing Path Foundation-HP, Inc.
-    \n#25 Newport st., cor. Marlboro st., East Fairview, Quezon City</string>
-    <string name="when">Every Sundays 9:00 - 10:00 am</string>
+    <string name="meeting" >\"For where two or three gather together
+    because they are mine, I am there among them.\" - Matthew 18:20
+        
+    \n\nCome and join our Meeting:
+    
+    \n\nHealing Path Foundation-HP, Inc.
+    \n#25 Newport st., cor. Marlboro st., East Fairview, Quezon City
+    
+    \n\nEvery Sundays 9:00 - 10:00 am
+    </string>
     <string-array name="twelve_steps">
                 <item>1. We admitted that we were powerless over our addiction, that
 our lives had become unmanageable.</item>
@@ -40,6 +44,7 @@ we tried to carry this message to addicts, and to practice
 these principles in all our affairs.</item>
         </string-array>
     <color name="headfirst">#ff8d8d8d</color>
+    
     
     
 </resources>
