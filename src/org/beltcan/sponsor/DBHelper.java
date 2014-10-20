@@ -8,23 +8,23 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "tamangapp.db";
+    private static final String DATABASE_NAME = "sponsor.db";
     private static final String TABLE_NAME = "updatesponsor";
 
-    public static final String TAMANGAPP_COLUMN_ID = "id";
-    public static final String TAMANGAPP_COLUMN_URI = "uri";
+    public static final String SPONSOR_COLUMN_ID = "id";
+    public static final String SPONSOR_COLUMN_URI = "uri";
 
-    private TamangAppOpenHelper openHelper;
+    private SponsorOpenHelper openHelper;
     private SQLiteDatabase database;
 
     public DBHelper(Context context) {
-        openHelper = new TamangAppOpenHelper(context);
+        openHelper = new SponsorOpenHelper(context);
         database = openHelper.getWritableDatabase();
     }
     
     public void saveSponsorData(String uri) {
 		ContentValues contentValues = new ContentValues();
-		contentValues.put(TAMANGAPP_COLUMN_URI, uri);
+		contentValues.put(SPONSOR_COLUMN_URI, uri);
 		database.insert(TABLE_NAME, null, contentValues);
 	}
 	
@@ -35,15 +35,15 @@ public class DBHelper {
 		);
     }
 
-    private class TamangAppOpenHelper extends SQLiteOpenHelper {
-        TamangAppOpenHelper(Context context) {
+    private class SponsorOpenHelper extends SQLiteOpenHelper {
+        SponsorOpenHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
         public void onCreate(SQLiteDatabase database) {
             database.execSQL("CREATE TABLE " + TABLE_NAME + "( "
-                + TAMANGAPP_COLUMN_ID + " INTEGER PRIMARY KEY, "
-                + TAMANGAPP_COLUMN_URI + " TEXT )"
+                + SPONSOR_COLUMN_ID + " INTEGER PRIMARY KEY, "
+                + SPONSOR_COLUMN_URI + " TEXT )"
             );
         }
 
