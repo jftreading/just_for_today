@@ -93,8 +93,8 @@ public class MainActivity extends Activity
     	if (requestCode == PICK_CONTACT_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {            	
                 contactUri = intent.getData();
-                //String s = contactUri.toString();
-                //databaseHelper.saveSponsorData(s);
+                String s = contactUri.toString();
+                databaseHelper.saveSponsorData(s);
                 renderContact(intent.getData());
                 ImageButton callBut = (ImageButton) findViewById(R.id.call_btn);
                 callBut.setOnClickListener(new OnClickListener() {

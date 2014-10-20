@@ -25,6 +25,7 @@ public class DBHelper {
     public void saveSponsorData(String uri) {
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(SPONSOR_COLUMN_URI, uri);
+		database.delete(TABLE_NAME, null, null);
 		database.insert(TABLE_NAME, null, contentValues);
 	}
 	
