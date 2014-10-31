@@ -67,7 +67,139 @@ public class MainActivity extends Activity
         if (!cursor.isClosed()) {
 			cursor.close();
 		}        
-        textMessage = (EditText) findViewById(R.id.etId);                
+        textMessage = (EditText) findViewById(R.id.etId);        
+        ImageButton callBut = (ImageButton) findViewById(R.id.call_btn);
+        ImageButton sendBut = (ImageButton) findViewById(R.id.send_btn);        
+        
+        callBut.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				/* Dial mobile number */
+				if (contactUri != null) {
+					Intent callIntent = new Intent(Intent.ACTION_CALL);
+			        callIntent.setData(Uri.parse("tel:" + getMobileNumber(contactUri)));
+			        startActivity(callIntent);					
+				}				
+			}
+		});        
+                      
+        sendBut.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String stextMessage = textMessage.getText().toString();
+				if (stextMessage.matches("")){
+					
+				} else if (contactUri != null) {
+					final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "Sending", "Sending text message");
+					Thread th = new Thread() {
+						
+					    @Override
+					    public void run() {					    	
+					    	/* Send text message */
+							try {
+					            String SENT = "sent";
+					            String DELIVERED = "delivered";
+
+					            Intent sentIntent = new Intent(SENT);
+					            /*Create Pending Intents*/
+					            PendingIntent sentPI = PendingIntent.getBroadcast(
+					                getApplicationContext(), 0, sentIntent,
+					                PendingIntent.FLAG_UPDATE_CURRENT);
+
+					            Intent deliveryIntent = new Intent(DELIVERED);
+
+					            PendingIntent deliverPI = PendingIntent.getBroadcast(
+					                getApplicationContext(), 0, deliveryIntent,
+					                PendingIntent.FLAG_UPDATE_CURRENT);
+					            /* Register for SMS send action */
+					            registerReceiver(new BroadcastReceiver() {
+					            	String result = "";
+
+					                @Override
+					                public void onReceive(Context context, Intent intent) {							                    
+
+					                    switch (getResultCode()) {
+
+					                    case Activity.RESULT_OK:
+					                        result = "Message sent";
+					                        break;
+					                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+					                        result = "Sending failed";
+					                        break;
+					                    case SmsManager.RESULT_ERROR_RADIO_OFF:
+					                        result = "Radio off";
+					                        break;
+					                    case SmsManager.RESULT_ERROR_NULL_PDU:
+					                        result = "No PDU defined";
+					                        break;
+					                    case SmsManager.RESULT_ERROR_NO_SERVICE:
+					                        result = "No service";
+					                        break;
+					                    }
+					                    
+					                    handler.post(new Runnable() {
+											
+											@Override
+											public void run() {
+												if (result != "") {													
+													Toast toast = Toast.makeText(getApplicationContext(), result,
+									                    Toast.LENGTH_LONG);
+									                toast.setGravity(Gravity.CENTER, 0, 0);
+									                toast.show();
+									                result = "";
+												}														
+							                    dialog.dismiss();														
+											}
+										});							                    
+					                }
+
+					            }, new IntentFilter(SENT));
+					            /* Register for Delivery event */
+					            registerReceiver(new BroadcastReceiver() {
+
+					                @Override
+					                public void onReceive(Context context, Intent intent) {
+					                	handler.post(new Runnable() {
+											
+											@Override
+											public void run() {
+												Toast.makeText(getApplicationContext(), "Delivered",
+								                        Toast.LENGTH_LONG).show();														
+											}
+										});							                    
+					                }
+
+					            }, new IntentFilter(DELIVERED));
+
+					            /*Send SMS*/
+					            SmsManager smsManager = SmsManager.getDefault();
+					            smsManager.sendTextMessage(
+					                getMobileNumber(contactUri),
+					                null,
+					                textMessage.getText().toString(),
+					                sentPI,
+					                deliverPI);
+					        } catch (Exception ex) {
+					        	final String exception = ex.getMessage().toString();
+					        	handler.post(new Runnable() {
+									
+									@Override
+									public void run() {
+										Toast.makeText(getApplicationContext(),
+								            exception, Toast.LENGTH_LONG).show();												
+									}
+								});
+					        	ex.printStackTrace();
+					        	dialog.dismiss();
+					        }								
+					    }	
+					};
+					th.start();
+				}										
+			}
+		});
     }   
 
     private void renderContact(Uri uri) {
@@ -98,137 +230,7 @@ public class MainActivity extends Activity
                 contactUri = intent.getData();
                 String s = contactUri.toString();
                 databaseHelper.saveSponsorData(s);
-                renderContact(intent.getData());
-                ImageButton callBut = (ImageButton) findViewById(R.id.call_btn);
-                callBut.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						/* Dial mobile number */
-						Intent callIntent = new Intent(Intent.ACTION_CALL);
-				        callIntent.setData(Uri.parse("tel:" + getMobileNumber(contactUri)));
-				        startActivity(callIntent);
-					}
-				});
-                ImageButton sendBut = (ImageButton) findViewById(R.id.send_btn);
-                textMessage = (EditText) findViewById(R.id.etId);                
-                sendBut.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						String stextMessage = textMessage.getText().toString();
-						if (stextMessage.matches("")){
-							
-						}
-						else {							
-							final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "Sending", "Sending text message");
-							Thread th = new Thread() {
-							    @Override
-							    public void run() {
-							    	// TODO Auto-generated method stub
-							    	/* Send text message */
-									try {
-							            String SENT = "sent";
-							            String DELIVERED = "delivered";
-
-							            Intent sentIntent = new Intent(SENT);
-							            /*Create Pending Intents*/
-							            PendingIntent sentPI = PendingIntent.getBroadcast(
-							                getApplicationContext(), 0, sentIntent,
-							                PendingIntent.FLAG_UPDATE_CURRENT);
-
-							            Intent deliveryIntent = new Intent(DELIVERED);
-
-							            PendingIntent deliverPI = PendingIntent.getBroadcast(
-							                getApplicationContext(), 0, deliveryIntent,
-							                PendingIntent.FLAG_UPDATE_CURRENT);
-							            /* Register for SMS send action */
-							            registerReceiver(new BroadcastReceiver() {
-							            	String result = "";
-
-							                @Override
-							                public void onReceive(Context context, Intent intent) {							                    
-
-							                    switch (getResultCode()) {
-
-							                    case Activity.RESULT_OK:
-							                        result = "Message sent";
-							                        break;
-							                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-							                        result = "Sending failed";
-							                        break;
-							                    case SmsManager.RESULT_ERROR_RADIO_OFF:
-							                        result = "Radio off";
-							                        break;
-							                    case SmsManager.RESULT_ERROR_NULL_PDU:
-							                        result = "No PDU defined";
-							                        break;
-							                    case SmsManager.RESULT_ERROR_NO_SERVICE:
-							                        result = "No service";
-							                        break;
-							                    }
-							                    
-							                    handler.post(new Runnable() {
-													
-													@Override
-													public void run() {
-														if (result != "") {
-															result = "";
-															Toast toast = Toast.makeText(getApplicationContext(), result,
-											                    Toast.LENGTH_LONG);
-											                toast.setGravity(Gravity.CENTER, 0, 0);
-											                toast.show();															
-														}														
-									                    dialog.dismiss();														
-													}
-												});							                    
-							                }
-
-							            }, new IntentFilter(SENT));
-							            /* Register for Delivery event */
-							            registerReceiver(new BroadcastReceiver() {
-
-							                @Override
-							                public void onReceive(Context context, Intent intent) {
-							                	handler.post(new Runnable() {
-													
-													@Override
-													public void run() {
-														Toast.makeText(getApplicationContext(), "Delivered",
-										                        Toast.LENGTH_LONG).show();														
-													}
-												});							                    
-							                }
-
-							            }, new IntentFilter(DELIVERED));
-
-							            /*Send SMS*/
-							            SmsManager smsManager = SmsManager.getDefault();
-							            smsManager.sendTextMessage(
-							                getMobileNumber(contactUri),
-							                null,
-							                textMessage.getText().toString(),
-							                sentPI,
-							                deliverPI);
-							        } catch (Exception ex) {
-							        	final String exception = ex.getMessage().toString();
-							        	handler.post(new Runnable() {
-											
-											@Override
-											public void run() {
-												Toast.makeText(getApplicationContext(),
-										            exception, Toast.LENGTH_LONG).show();												
-											}
-										});
-							        	ex.printStackTrace();
-							        	dialog.dismiss();
-							        }								
-							    }	
-							};
-							th.start();
-						}										
-					}
-				});                
+                renderContact(intent.getData());                
             }
         }
     }
