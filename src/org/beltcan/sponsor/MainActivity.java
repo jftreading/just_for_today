@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.view.Gravity;
@@ -39,6 +40,7 @@ public class MainActivity extends Activity
 	private DBHelper databaseHelper;
     private EditText textMessage;    
     private Uri contactUri;
+	private Handler handler;
 
     /** Called when the activity is first created. */
     @Override
@@ -47,6 +49,7 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        handler = new Handler();
         databaseHelper = new DBHelper(this);
         Cursor cursor = databaseHelper.getAllSponsorData();
         
@@ -141,10 +144,10 @@ public class MainActivity extends Activity
 							                PendingIntent.FLAG_UPDATE_CURRENT);
 							            /* Register for SMS send action */
 							            registerReceiver(new BroadcastReceiver() {
+							            	String result = "";
 
 							                @Override
-							                public void onReceive(Context context, Intent intent) {
-							                    String result = "";
+							                public void onReceive(Context context, Intent intent) {							                    
 
 							                    switch (getResultCode()) {
 
@@ -164,12 +167,21 @@ public class MainActivity extends Activity
 							                        result = "No service";
 							                        break;
 							                    }
-
-							                        Toast toast = Toast.makeText(getApplicationContext(), result,
-							                            Toast.LENGTH_LONG);
-							                        toast.setGravity(Gravity.CENTER, 0, 0);
-							                        toast.show();
-							                        dialog.dismiss();
+							                    
+							                    handler.post(new Runnable() {
+													
+													@Override
+													public void run() {
+														if (result != "") {
+															result = "";
+															Toast toast = Toast.makeText(getApplicationContext(), result,
+											                    Toast.LENGTH_LONG);
+											                toast.setGravity(Gravity.CENTER, 0, 0);
+											                toast.show();															
+														}														
+									                    dialog.dismiss();														
+													}
+												});							                    
 							                }
 
 							            }, new IntentFilter(SENT));
@@ -178,8 +190,14 @@ public class MainActivity extends Activity
 
 							                @Override
 							                public void onReceive(Context context, Intent intent) {
-							                    Toast.makeText(getApplicationContext(), "Delivered",
-							                        Toast.LENGTH_LONG).show();
+							                	handler.post(new Runnable() {
+													
+													@Override
+													public void run() {
+														Toast.makeText(getApplicationContext(), "Delivered",
+										                        Toast.LENGTH_LONG).show();														
+													}
+												});							                    
 							                }
 
 							            }, new IntentFilter(DELIVERED));
@@ -193,16 +211,22 @@ public class MainActivity extends Activity
 							                sentPI,
 							                deliverPI);
 							        } catch (Exception ex) {
-							              Toast.makeText(getApplicationContext(),
-							                  ex.getMessage().toString(), Toast.LENGTH_LONG)
-							                  .show();
-							              ex.printStackTrace();
+							        	final String exception = ex.getMessage().toString();
+							        	handler.post(new Runnable() {
+											
+											@Override
+											public void run() {
+												Toast.makeText(getApplicationContext(),
+										            exception, Toast.LENGTH_LONG).show();												
+											}
+										});
+							        	ex.printStackTrace();
+							        	dialog.dismiss();
 							        }								
 							    }	
 							};
 							th.start();
-						}						
-						
+						}										
 					}
 				});                
             }
