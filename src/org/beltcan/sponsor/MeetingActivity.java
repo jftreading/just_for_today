@@ -10,6 +10,8 @@ import android.view.View;
 
 public class MeetingActivity extends Activity
 {
+	private final String LANDLINE = "029395917";
+	
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -18,7 +20,14 @@ public class MeetingActivity extends Activity
         setTitle(R.string.title_two);
 	}
 	
-	public void onClick(View view) 
+	public void onCallLandlineClick(View view)
+	{
+		Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + LANDLINE));
+        startActivity(callIntent);		
+	}
+	
+	public void onShowMapClick(View view) 
     {
 		Intent intent=new Intent(android.content.Intent.ACTION_VIEW);
         intent.setData(Uri.parse("geo: 14.708956, 121.078503"));

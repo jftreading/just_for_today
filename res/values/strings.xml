@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Call B4U Drink</string>
-    <string name="title_one">The Twelve Steps - Narcotics Anonymous</string><string name="title_two">Schedule</string><string name="et_hint">Enter message here</string>
+    <string name="title_one">The Twelve Steps - Narcotics Anonymous</string><string name="title_two">Location</string><string name="et_hint">Enter message here</string>
     <string name="option_one">The 12 Steps</string>
     <string name="option_two">NA Meeting</string>
-    <string name="button_one">Show Map</string>
-    <string name="meeting" >\"For where two or three gather together
+    <string name="button_one">Call Landline</string>
+    <string name="button_two">Show Map</string><string name="meeting" >\"For where two or three gather together
     because they are mine, I am there among them.\" - Matthew 18:20
         
     \n\nCome and join our Meeting:
     
     \n\nHealing Path Foundation-HP, Inc.
     \n#25 Newport st., cor. Marlboro st., East Fairview, Quezon City
-    
+    \nTel. number:  (02) 939-5917
+        
     \n\nEvery Sundays 9:00 - 10:00 am
-    </string>
-    <string-array name="twelve_steps">
+    </string><string-array name="twelve_steps">
                 <item>1. We admitted that we were powerless over our addiction, that
 our lives had become unmanageable.</item>
                 <item>2. We came to believe that a Power greater than ourselves
@@ -44,6 +44,8 @@ we tried to carry this message to addicts, and to practice
 these principles in all our affairs.</item>
         </string-array>
     <color name="headfirst">#ff8d8d8d</color>
+    
+    
     
     
     

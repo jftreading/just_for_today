@@ -32,17 +32,18 @@ public final class R {
     }
     public static final class id {
         public static final int Button1=0x7f080009;
+        public static final int Button2=0x7f08000a;
         public static final int RelativeLayout1=0x7f080007;
         public static final int TextView1=0x7f080008;
         public static final int call_btn=0x7f080006;
         public static final int contact_name=0x7f080000;
         public static final int contact_phone=0x7f080001;
         public static final int etId=0x7f080004;
-        public static final int lvId=0x7f08000a;
-        public static final int meeting=0x7f08000c;
+        public static final int lvId=0x7f08000b;
+        public static final int meeting=0x7f08000d;
         public static final int portrait=0x7f080003;
         public static final int send_btn=0x7f080005;
-        public static final int steps=0x7f08000b;
+        public static final int steps=0x7f08000c;
         public static final int update_contact=0x7f080002;
     }
     public static final class layout {
@@ -57,8 +58,9 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f040000;
         public static final int button_one=0x7f040006;
+        public static final int button_two=0x7f040007;
         public static final int et_hint=0x7f040003;
-        public static final int meeting=0x7f040007;
+        public static final int meeting=0x7f040008;
         public static final int option_one=0x7f040004;
         public static final int option_two=0x7f040005;
         public static final int title_one=0x7f040001;
