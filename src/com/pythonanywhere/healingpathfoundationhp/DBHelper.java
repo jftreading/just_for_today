@@ -1,4 +1,4 @@
-package org.beltcan.sponsor;
+package com.pythonanywhere.healingpathfoundationhp;
 
 import android.content.Context;
 import android.content.ContentValues;

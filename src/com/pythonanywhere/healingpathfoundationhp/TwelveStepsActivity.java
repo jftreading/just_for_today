@@ -1,4 +1,6 @@
-package org.beltcan.sponsor;
+package com.pythonanywhere.healingpathfoundationhp;
+
+import com.pythonanywhere.healingpathfoundationhp.R;
 
 import android.app.Activity;
 import android.os.Bundle;

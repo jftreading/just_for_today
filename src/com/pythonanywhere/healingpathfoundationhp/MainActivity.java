@@ -1,8 +1,8 @@
-package org.beltcan.sponsor;
+package com.pythonanywhere.healingpathfoundationhp;
 
 import java.io.InputStream;
 
-import org.beltcan.sponsor.R;
+import com.pythonanywhere.healingpathfoundationhp.R;
 
 import android.app.Activity;
 import android.app.PendingIntent;
