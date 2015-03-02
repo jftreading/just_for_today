@@ -38,9 +38,13 @@ class MyAdapter extends FragmentPagerAdapter
 		}
 		if (arg0 == 1)
 		{
-			fragment = new TwelveStepsFragment();
+			fragment = (Fragment) new JFTFragment();
 		}
 		if (arg0 == 2)
+		{
+			fragment = new TwelveStepsFragment();
+		}
+		if (arg0 == 3)
 		{
 			fragment = new MeetingFragment();
 		}
@@ -49,7 +53,6 @@ class MyAdapter extends FragmentPagerAdapter
 
 	@Override
 	public int getCount() {
-		return 3;
-	}
-	
+		return 4;
+	}	
 } 
