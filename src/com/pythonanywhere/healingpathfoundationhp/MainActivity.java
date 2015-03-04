@@ -1,5 +1,6 @@
 package com.pythonanywhere.healingpathfoundationhp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -54,5 +55,24 @@ class MyAdapter extends FragmentPagerAdapter
 	@Override
 	public int getCount() {
 		return 4;
-	}	
+	}
+
+	@Override
+	public CharSequence getPageTitle(int position) {		
+		if (position==0) {
+			return "Call B4U Drink";
+		}
+		if (position==1) {
+			return "Just For Today";
+		}
+		if (position==2) {
+			return "The Twelve Steps - Narcotics Anonymous";
+		}
+		if (position==3) {
+			return "Location";
+		}
+		return null;
+	}
+	
+	
 } 
