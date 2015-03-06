@@ -397,8 +397,8 @@ containing a value of this type.
     }
     public static final class string {
         public static final int app_name=0x7f06001d;
-        public static final int button_one=0x7f060023;
-        public static final int button_two=0x7f060024;
+        public static final int button_one=0x7f060021;
+        public static final int button_two=0x7f060022;
         public static final int com_facebook_choose_friends=0x7f060011;
         public static final int com_facebook_dialogloginactivity_ok_button=0x7f060000;
         public static final int com_facebook_image_download_unknown_error=0x7f06001c;
@@ -428,13 +428,11 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_log_in_button=0x7f06000a;
         public static final int com_facebook_usersettingsfragment_logged_in=0x7f06000b;
         public static final int com_facebook_usersettingsfragment_not_logged_in=0x7f06000c;
-        public static final int et_hint=0x7f060020;
-        public static final int facebook_app_id=0x7f060026;
-        public static final int meeting=0x7f060025;
-        public static final int option_one=0x7f060021;
-        public static final int option_two=0x7f060022;
-        public static final int title_one=0x7f06001e;
-        public static final int title_two=0x7f06001f;
+        public static final int et_hint=0x7f06001e;
+        public static final int facebook_app_id=0x7f060024;
+        public static final int meeting=0x7f060023;
+        public static final int option_one=0x7f06001f;
+        public static final int option_two=0x7f060020;
     }
     public static final class style {
         public static final int com_facebook_loginview_default_style=0x7f070000;

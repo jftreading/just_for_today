@@ -1,12 +1,10 @@
 package com.pythonanywhere.healingpathfoundationhp;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
 public class MainActivity extends FragmentActivity {
@@ -20,7 +18,6 @@ public class MainActivity extends FragmentActivity {
 		FragmentManager fm = getSupportFragmentManager();
 		viewPager.setAdapter(new MyAdapter(fm));
 	}
-
 }
 
 class MyAdapter extends FragmentPagerAdapter
@@ -60,7 +57,7 @@ class MyAdapter extends FragmentPagerAdapter
 	@Override
 	public CharSequence getPageTitle(int position) {		
 		if (position==0) {
-			return "Call B4U Drink";
+			return "Call before you drink";
 		}
 		if (position==1) {
 			return "Just For Today";

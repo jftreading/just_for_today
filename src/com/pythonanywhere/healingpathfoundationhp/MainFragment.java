@@ -13,9 +13,6 @@ import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -35,7 +32,6 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-
 @SuppressLint("NewApi")
 public class MainFragment extends Fragment
 {
@@ -44,15 +40,22 @@ public class MainFragment extends Fragment
     private EditText textMessage;    
     private Uri contactUri;
 	private Handler handler;
-    private View v = null;
+    private View fragmentView;
+    private TextView contactNameView;
+    private TextView contactPhoneView;
+    private ImageView contactPhotoView;
     
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-    	View v = inflater.inflate(R.layout.main_fragment, container, false);
+    	fragmentView = inflater.inflate(R.layout.main_fragment, container, false);
+    	
+    	contactNameView = (TextView) fragmentView.findViewById(R.id.contact_name);
+        contactPhoneView = (TextView) fragmentView.findViewById(R.id.contact_phone);
+        contactPhotoView = (ImageView) fragmentView.findViewById(R.id.portrait);
     	
         handler = new Handler();
-        /* databaseHelper = new DBHelper(this);
+        databaseHelper = new DBHelper(getActivity());
         Cursor cursor = databaseHelper.getAllSponsorData();
         
         if (cursor.moveToLast()) {
@@ -68,13 +71,24 @@ public class MainFragment extends Fragment
         
         if (!cursor.isClosed()) {
 			cursor.close();
-		} */
+		}
 				        
-        textMessage = (EditText) v.findViewById(R.id.etId);        
-        ImageButton callBut = (ImageButton) v.findViewById(R.id.call_btn);
-        ImageButton sendBut = (ImageButton) v.findViewById(R.id.send_btn);        
+        textMessage = (EditText) fragmentView.findViewById(R.id.etId);
+        ImageButton updateContact = (ImageButton) fragmentView.findViewById(R.id.update_contact);
+        ImageButton callBut = (ImageButton) fragmentView.findViewById(R.id.call_btn);
+        ImageButton sendBut = (ImageButton) fragmentView.findViewById(R.id.send_btn);        
         
-        /* callBut.setOnClickListener(new OnClickListener() {
+        updateContact.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivityForResult(new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI),
+			            PICK_CONTACT_REQUEST
+			        );				
+			}
+		});
+        
+        callBut.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -95,7 +109,8 @@ public class MainFragment extends Fragment
 				if (stextMessage.matches("")){
 					
 				} else if (contactUri != null) {
-					final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "Sending", "Sending text message");
+					
+					final ProgressDialog dialog = ProgressDialog.show(getActivity(), "Sending", "Sending text message");
 					Thread th = new Thread() {
 						
 					    @Override
@@ -108,16 +123,16 @@ public class MainFragment extends Fragment
 					            Intent sentIntent = new Intent(SENT);
 					            //Create Pending Intents
 					            PendingIntent sentPI = PendingIntent.getBroadcast(
-					                getApplicationContext(), 0, sentIntent,
+					                getActivity().getApplicationContext(), 0, sentIntent,
 					                PendingIntent.FLAG_UPDATE_CURRENT);
 
 					            Intent deliveryIntent = new Intent(DELIVERED);
 
 					            PendingIntent deliverPI = PendingIntent.getBroadcast(
-					                getApplicationContext(), 0, deliveryIntent,
+					                getActivity().getApplicationContext(), 0, deliveryIntent,
 					                PendingIntent.FLAG_UPDATE_CURRENT);
 					            //Register for SMS send action
-					            registerReceiver(new BroadcastReceiver() {
+					            getActivity().registerReceiver(new BroadcastReceiver() {
 					            	String result = "";
 
 					                @Override
@@ -147,7 +162,7 @@ public class MainFragment extends Fragment
 											@Override
 											public void run() {
 												if (result != "") {													
-													Toast toast = Toast.makeText(getApplicationContext(), result,
+													Toast toast = Toast.makeText(getActivity().getApplicationContext(), result,
 									                    Toast.LENGTH_LONG);
 									                toast.setGravity(Gravity.CENTER, 0, 0);
 									                toast.show();
@@ -160,7 +175,7 @@ public class MainFragment extends Fragment
 
 					            }, new IntentFilter(SENT));
 					            //Register for Delivery event
-					            registerReceiver(new BroadcastReceiver() {
+					            getActivity().registerReceiver(new BroadcastReceiver() {
 
 					                @Override
 					                public void onReceive(Context context, Intent intent) {
@@ -168,7 +183,7 @@ public class MainFragment extends Fragment
 											
 											@Override
 											public void run() {
-												Toast.makeText(getApplicationContext(), "Delivered",
+												Toast.makeText(getActivity().getApplicationContext(), "Delivered",
 								                        Toast.LENGTH_LONG).show();														
 											}
 										});							                    
@@ -190,7 +205,7 @@ public class MainFragment extends Fragment
 									
 									@Override
 									public void run() {
-										Toast.makeText(getApplicationContext(),
+										Toast.makeText(getActivity().getApplicationContext(),
 								            exception, Toast.LENGTH_LONG).show();												
 									}
 								});
@@ -202,15 +217,12 @@ public class MainFragment extends Fragment
 					th.start();
 				}										
 			}
-		}); */
+		});
         
-		return v;
+		return fragmentView;
 	}
 
-	private void renderContact(Uri uri) {
-        TextView contactNameView = (TextView) v.findViewById(R.id.contact_name);
-        TextView contactPhoneView = (TextView) v.findViewById(R.id.contact_phone);
-        ImageView contactPhotoView = (ImageView) v.findViewById(R.id.portrait);
+	private void renderContact(Uri uri) {        
 
         if (uri == null) {
             contactNameView.setText("Select sponsor");
@@ -222,13 +234,7 @@ public class MainFragment extends Fragment
             contactPhotoView.setImageBitmap(getPhoto(uri));
         }
     }
-
-    public void onUpdateContact(View view) {
-        startActivityForResult(new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI),
-            PICK_CONTACT_REQUEST
-        );
-    }
-
+    
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	if (requestCode == PICK_CONTACT_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {            	
@@ -326,6 +332,4 @@ public class MainFragment extends Fragment
         Bitmap defaultPhoto = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_report_image);
         return defaultPhoto;
     }
-
 }
-
