@@ -1,4 +1,4 @@
-package com.pythonanywhere.healingpathfoundationhp;
+package com.wordpress.jftreading;
 
 import android.content.Context;
 import android.content.ContentValues;

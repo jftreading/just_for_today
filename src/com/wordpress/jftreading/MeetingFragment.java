@@ -1,8 +1,9 @@
-package com.pythonanywhere.healingpathfoundationhp;
-
-import com.pythonanywhere.healingpathfoundationhp.R;
+package com.wordpress.jftreading;
 
 import android.os.Bundle;
+
+import com.wordpress.jftreading.R;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;

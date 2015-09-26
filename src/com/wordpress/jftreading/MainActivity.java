@@ -1,4 +1,4 @@
-package com.pythonanywhere.healingpathfoundationhp;
+package com.wordpress.jftreading;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -36,13 +36,9 @@ class MyAdapter extends FragmentPagerAdapter
 		}
 		if (arg0 == 1)
 		{
-			fragment = (Fragment) new JFTFragment();
-		}
-		if (arg0 == 2)
-		{
 			fragment = new TwelveStepsFragment();
 		}
-		if (arg0 == 3)
+		if (arg0 == 2)
 		{
 			fragment = new MeetingFragment();
 		}
@@ -51,7 +47,7 @@ class MyAdapter extends FragmentPagerAdapter
 
 	@Override
 	public int getCount() {
-		return 4;
+		return 3;
 	}
 
 	@Override
@@ -60,12 +56,9 @@ class MyAdapter extends FragmentPagerAdapter
 			return "Call before you drink";
 		}
 		if (position==1) {
-			return "Just For Today";
-		}
-		if (position==2) {
 			return "The Twelve Steps - Narcotics Anonymous";
 		}
-		if (position==3) {
+		if (position==2) {
 			return "Location";
 		}
 		return null;
