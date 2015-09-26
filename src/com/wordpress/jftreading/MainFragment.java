@@ -6,20 +6,27 @@ import com.wordpress.jftreading.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.telephony.SmsManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ImageView;
 import android.widget.ImageButton;
+import android.content.BroadcastReceiver;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,10 +39,10 @@ public class MainFragment extends Fragment implements OnClickListener
 {
 	private static final int PICK_CONTACT_REQUEST = 0;
 	private DBHelper databaseHelper;
-    protected EditText textMessage;    
-    protected Uri contactUri;
-	protected Handler handler;
-	protected ProgressDialog dialog;
+    private EditText textMessage;    
+    private Uri contactUri;
+	private Handler handler;
+	private ProgressDialog dialog;
     private View fragmentView;
     private TextView contactNameView;
     private TextView contactPhoneView;
@@ -60,6 +67,8 @@ public class MainFragment extends Fragment implements OnClickListener
         sendBut.setOnClickListener(this);
         
         searchDatabase();
+        renderContact(contactUri);
+        handler = new Handler();
         
 		return fragmentView;
 	}
@@ -99,7 +108,110 @@ public class MainFragment extends Fragment implements OnClickListener
 				
 				 dialog = ProgressDialog.show(getActivity(),
 						"Sending", "Sending text message");
-			Thread th = new Thread(new SendSMS());
+			Thread th = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// Send text message
+					try {
+			            String SENT = "sent";
+			            String DELIVERED = "delivered";
+
+			            Intent sentIntent = new Intent(SENT);
+			            //Create Pending Intents
+			            PendingIntent sentPI = PendingIntent.getBroadcast(
+			                getActivity().getApplicationContext(), 0, sentIntent,
+			                PendingIntent.FLAG_UPDATE_CURRENT);
+
+			            Intent deliveryIntent = new Intent(DELIVERED);
+
+			            PendingIntent deliverPI = PendingIntent.getBroadcast(
+			                getActivity().getApplicationContext(), 0, deliveryIntent,
+			                PendingIntent.FLAG_UPDATE_CURRENT);
+			            //Register for SMS send action
+			            getActivity().registerReceiver(new BroadcastReceiver() {
+			            	String result = "";
+
+			                @Override
+			                public void onReceive(Context context, Intent intent) {							                    
+
+			                    switch (getResultCode()) {
+
+			                    case Activity.RESULT_OK:
+			                        result = "Message sent";
+			                        break;
+			                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+			                        result = "Sending failed";
+			                        break;
+			                    case SmsManager.RESULT_ERROR_RADIO_OFF:
+			                        result = "Radio off";
+			                        break;
+			                    case SmsManager.RESULT_ERROR_NULL_PDU:
+			                        result = "No PDU defined";
+			                        break;
+			                    case SmsManager.RESULT_ERROR_NO_SERVICE:
+			                        result = "No service";
+			                        break;
+			                    }
+			                    
+			                    handler.post(new Runnable() {
+									
+									@Override
+									public void run() {
+										if (result != "") {													
+											Toast toast = Toast.makeText(getActivity().getApplicationContext(), result,
+							                    Toast.LENGTH_LONG);
+							                toast.setGravity(Gravity.CENTER, 0, 0);
+							                toast.show();
+							                result = "";
+										}														
+					                    dialog.dismiss();														
+									}
+								});							                    
+			                }
+
+			            }, new IntentFilter(SENT));
+			            //Register for Delivery event
+			            getActivity().registerReceiver(new BroadcastReceiver() {
+
+			                @Override
+			                public void onReceive(Context context, Intent intent) {
+			                	handler.post(new Runnable() {
+									
+									@Override
+									public void run() {
+										Toast.makeText(getActivity().getApplicationContext(), "Delivered",
+						                        Toast.LENGTH_LONG).show();														
+									}
+								});							                    
+			                }
+
+			            }, new IntentFilter(DELIVERED));
+
+			            //Send SMS
+			            SmsManager smsManager = SmsManager.getDefault();
+			            smsManager.sendTextMessage(
+			                getMobileNumber(contactUri),
+			                null,
+			                textMessage.getText().toString(),
+			                sentPI,
+			                deliverPI);
+			        } catch (Exception ex) {
+			        	final String exception = ex.getMessage().toString();
+			        	handler.post(new Runnable() {
+							
+							@Override
+							public void run() {
+								Toast.makeText(getActivity().getApplicationContext(),
+						            exception, Toast.LENGTH_LONG).show();												
+							}
+						});
+			        	ex.printStackTrace();
+			        	dialog.dismiss();
+			        }
+					
+				}
+			});
 			th.start();
 			}
 			break;
@@ -110,17 +222,15 @@ public class MainFragment extends Fragment implements OnClickListener
     
     protected String getMobileNumber(Uri uri) {
         String phoneNumber = null;
+        String id = null;
 
         Cursor contactCursor = getActivity().getContentResolver().query(
-            uri, new String[]{ContactsContract.Contacts._ID},
-            null, null, null);
-
-            String id = null;
-            if (contactCursor.moveToFirst()){
-                id = contactCursor.getString(
-                    contactCursor.getColumnIndex(ContactsContract.Contacts._ID));
-            }
-            contactCursor.close();
+        		uri, new String[]{ContactsContract.Contacts._ID},null, null, null);
+        
+        if (contactCursor.moveToFirst()){
+        	id = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts._ID));
+        }
+        contactCursor.close();
 
         Cursor phoneCursor = getActivity().getContentResolver().query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
@@ -128,13 +238,10 @@ public class MainFragment extends Fragment implements OnClickListener
             ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ? AND "
                 + ContactsContract.CommonDataKinds.Phone.TYPE + " = "
                 + ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
-            new String[] { id },
-            null
-        );
+            new String[] { id },null);
+        
         if (phoneCursor.moveToFirst()){
-            phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(
-                ContactsContract.CommonDataKinds.Phone.NUMBER)
-            );
+            phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
         }
         phoneCursor.close();
         return phoneNumber;
@@ -145,13 +252,12 @@ public class MainFragment extends Fragment implements OnClickListener
         Cursor cursor = databaseHelper.getAllSponsorData();        
         if (cursor.moveToLast()) {
 			do { String s = cursor.getString(1);
-                 Uri mUri = Uri.parse(s);
-                 contactUri = mUri;
-                 renderContact(mUri);
-				 Log.d("DB Value", s);
+                 contactUri = Uri.parse(s);
+                 //renderContact(mUri);
+				 //Log.d("DB Value", s);
 			} while (cursor.moveToNext());
 		} else {
-			renderContact(null);
+			contactUri = null;
 		}
         if (!cursor.isClosed()) {
 			cursor.close();
@@ -176,19 +282,15 @@ public class MainFragment extends Fragment implements OnClickListener
 
         Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
             if(cursor.moveToFirst()) {
-                displayName = cursor.getString(
-                    cursor.getColumnIndex(
-                        ContactsContract.Contacts.DISPLAY_NAME
-                    )
-                );
+                displayName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
             }
         cursor.close();
-
         return displayName;
     }
 
-    private Bitmap getPhoto(Uri uri) {
-        Bitmap photo = null;
+    @SuppressLint("UseValueOf")
+	private Bitmap getPhoto(Uri uri) {
+        Bitmap photo = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_report_image);
         String id = null;
         Uri photoUri = null;
         Cursor contactCursor = getActivity().getContentResolver().query(
@@ -196,32 +298,18 @@ public class MainFragment extends Fragment implements OnClickListener
             null, null, null);
 
         if (contactCursor.moveToFirst()){
-            id = contactCursor.getString(
-                contactCursor.getColumnIndex(ContactsContract.Contacts._ID));
-            photoUri = ContentUris.withAppendedId(
-                            ContactsContract.Contacts.CONTENT_URI,
-                            new Long(id).longValue());
-        } else {
-            Bitmap defaultPhoto = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_report_image);
-            return defaultPhoto;
+            id = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts._ID));
+            photoUri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI,
+            		new Long(id).longValue());
         }
         contactCursor.close();        
         if (photoUri != null) {
-        InputStream input =
-                    ContactsContract.Contacts.openContactPhotoInputStream(
-                    		getActivity().getContentResolver(),
-                        ContentUris.withAppendedId(
-                            ContactsContract.Contacts.CONTENT_URI,
-                            new Long(id).longValue())
-                    );
+        InputStream input = ContactsContract.Contacts.openContactPhotoInputStream(getActivity().getContentResolver(),
+        		ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(id).longValue()));
             if (input != null) {
-                return BitmapFactory.decodeStream(input);
+                photo = BitmapFactory.decodeStream(input);
             }
-        } else {
-            Bitmap defaultPhoto = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_report_image);
-            return defaultPhoto;
         }
-        Bitmap defaultPhoto = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_report_image);
-        return defaultPhoto;
+        return photo;
     }	
 }

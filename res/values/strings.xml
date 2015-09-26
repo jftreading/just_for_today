@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Call B4U Drink</string><string name="et_hint">Enter message here</string>
+    <string name="app_name">Just4Today</string><string name="et_hint">Enter message here</string>
     <string name="option_one">The 12 Steps</string>
     <string name="option_two">NA Meeting</string>
     <string name="button_one">Call Landline</string>
