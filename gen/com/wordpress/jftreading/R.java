@@ -9,6 +9,7 @@ package com.wordpress.jftreading;
 
 public final class R {
     public static final class array {
+        public static final int page_titles=0x7f050001;
         public static final int twelve_steps=0x7f050000;
     }
     public static final class attr {
@@ -62,7 +63,6 @@ public final class R {
         public static final int button_one=0x7f040004;
         public static final int button_two=0x7f040005;
         public static final int et_hint=0x7f040001;
-        public static final int facebook_app_id=0x7f040007;
         public static final int meeting=0x7f040006;
         public static final int option_one=0x7f040002;
         public static final int option_two=0x7f040003;

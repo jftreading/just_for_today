@@ -1,5 +1,6 @@
 package com.wordpress.jftreading;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 public class MainActivity extends FragmentActivity {
+	
 
 	ViewPager viewPager = null;
 	@Override
@@ -16,15 +18,17 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.main);
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		FragmentManager fm = getSupportFragmentManager();
-		viewPager.setAdapter(new MyAdapter(fm));
+		viewPager.setAdapter(new MyAdapter(fm, this));
 	}
 }
 
 class MyAdapter extends FragmentPagerAdapter
 {
-
-	public MyAdapter(FragmentManager fm) {
-		super(fm);		
+	private String[] pageTitles;
+	
+	public MyAdapter(FragmentManager fm, Context context) {
+		super(fm);
+		pageTitles = context.getResources().getStringArray(R.array.page_titles);
 	}
 
 	@Override
@@ -47,22 +51,15 @@ class MyAdapter extends FragmentPagerAdapter
 
 	@Override
 	public int getCount() {
-		return 3;
+		return pageTitles.length;
 	}
 
 	@Override
-	public CharSequence getPageTitle(int position) {		
-		if (position==0) {
-			return "Call before you drink";
+	public CharSequence getPageTitle(int position) {
+		if (pageTitles.length != 0) {
+			return pageTitles[position];
+		} else {
+		    return null;
 		}
-		if (position==1) {
-			return "The Twelve Steps - Narcotics Anonymous";
-		}
-		if (position==2) {
-			return "Location";
-		}
-		return null;
-	}
-	
-	
+	}	
 } 

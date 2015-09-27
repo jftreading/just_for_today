@@ -43,7 +43,11 @@ we tried to carry this message to addicts, and to practice
 these principles in all our affairs.</item>
         </string-array>
     <color name="headfirst">#ff8d8d8d</color>
-    <string name="facebook_app_id">593917504072789</string>
+    <string-array name="page_titles">
+        <item >Call before you drink</item>
+        <item >The Twelve Steps of NA</item>
+        <item >Location</item>
+    </string-array>
     
     
     
