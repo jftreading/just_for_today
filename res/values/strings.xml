@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Just4Today</string><string name="et_hint">Enter message here</string>
-    <string name="option_one">The 12 Steps</string>
-    <string name="option_two">NA Meeting</string>
     <string name="button_one">Call Landline</string>
-    <string name="button_two">Show Map</string><string name="meeting" >\"For where two or three gather together
+    <string name="button_two">Show Map</string><string name="homepage">https://jftreading.wordpress.com/</string><string name="meeting" >\"For where two or three gather together
     because they are mine, I am there among them.\" - Matthew 18:20
         
     \n\nCome and join our meeting:
@@ -14,7 +12,10 @@
     \nTel. number:  +632 9395917
         
     \n\nEvery Sunday 8:45 - 9:45 am
-    </string><string-array name="twelve_steps">
+    </string>
+    
+    
+    <color name="headfirst">#ff8d8d8d</color><string-array name="twelve_steps">
                 <item>1. We admitted that we were powerless over our addiction, that
 our lives had become unmanageable.</item>
                 <item>2. We came to believe that a Power greater than ourselves
@@ -41,13 +42,11 @@ that out.</item>
                 <item>12. Having had a spiritual awakening as a result of these steps,
 we tried to carry this message to addicts, and to practice
 these principles in all our affairs.</item>
-        </string-array>
-    <color name="headfirst">#ff8d8d8d</color>
-    <string-array name="page_titles">
-        <item >Call before you drink</item>
-        <item >The Twelve Steps of NA</item>
-        <item >Location</item>
-        <item >Home</item>
+        </string-array><string-array name="page_titles">
+        <item>Call before you drink</item>
+        <item>Just for Today</item><item>The Twelve Steps of NA</item>
+        <item>Location</item>
+        
     </string-array>
     
     

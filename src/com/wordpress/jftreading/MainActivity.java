@@ -39,15 +39,15 @@ class MyAdapter extends FragmentPagerAdapter
         }
         if (arg0 == 1)
         {
-            fragment = new TwelveStepsFragment();
+            fragment = new HomepageFragment();
         }
         if (arg0 == 2)
         {
-            fragment = new MeetingFragment();
+            fragment = new TwelveStepsFragment();
         }
         if (arg0 == 3)
         {
-        	fragment = new Home();
+        	fragment = new MeetingFragment();
         }
         return fragment;
     }

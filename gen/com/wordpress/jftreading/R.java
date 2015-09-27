@@ -9,13 +9,13 @@ package com.wordpress.jftreading;
 
 public final class R {
     public static final class array {
-        public static final int page_titles=0x7f050001;
-        public static final int twelve_steps=0x7f050000;
+        public static final int page_titles=0x7f060001;
+        public static final int twelve_steps=0x7f060000;
     }
     public static final class attr {
     }
     public static final class color {
-        public static final int headfirst=0x7f060000;
+        public static final int headfirst=0x7f050000;
     }
     public static final class drawable {
         public static final int button_call=0x7f020000;
@@ -40,17 +40,15 @@ public final class R {
         public static final int contact_name=0x7f080003;
         public static final int contact_phone=0x7f080004;
         public static final int etId=0x7f080007;
-        public static final int meeting=0x7f08000f;
         public static final int pager=0x7f080001;
         public static final int portrait=0x7f080006;
         public static final int send_btn=0x7f080008;
-        public static final int steps=0x7f08000e;
         public static final int title=0x7f080002;
         public static final int update_contact=0x7f080005;
         public static final int webkit=0x7f080000;
     }
     public static final class layout {
-        public static final int home=0x7f030000;
+        public static final int homepage=0x7f030000;
         public static final int main=0x7f030001;
         public static final int main_fragment=0x7f030002;
         public static final int meeting_fragment=0x7f030003;
@@ -62,11 +60,10 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
-        public static final int button_one=0x7f040004;
-        public static final int button_two=0x7f040005;
+        public static final int button_one=0x7f040002;
+        public static final int button_two=0x7f040003;
         public static final int et_hint=0x7f040001;
-        public static final int meeting=0x7f040006;
-        public static final int option_one=0x7f040002;
-        public static final int option_two=0x7f040003;
+        public static final int homepage=0x7f040004;
+        public static final int meeting=0x7f040005;
     }
 }

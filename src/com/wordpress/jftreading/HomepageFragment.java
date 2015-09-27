@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class Home extends Fragment {
+public class HomepageFragment extends Fragment {
 	private View fragmentView;
 	private WebView browser;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		fragmentView = inflater.inflate(R.layout.home, container, false);
+		fragmentView = inflater.inflate(R.layout.homepage, container, false);
 		browser = (WebView) fragmentView.findViewById(R.id.webkit);
 		browser.getSettings().setJavaScriptEnabled(true);
-		browser.loadUrl("https://jftreading.wordpress.com/");
+		browser.loadUrl(getResources().getString(R.string.homepage));
 		return fragmentView;
 	}
 }
