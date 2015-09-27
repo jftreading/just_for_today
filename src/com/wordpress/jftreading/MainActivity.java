@@ -25,7 +25,6 @@ public class MainActivity extends FragmentActivity {
 class MyAdapter extends FragmentPagerAdapter
 {
 	private String[] pageTitles;
-	
 	public MyAdapter(FragmentManager fm, Context context) {
 		super(fm);
 		pageTitles = context.getResources().getStringArray(R.array.page_titles);
@@ -34,20 +33,24 @@ class MyAdapter extends FragmentPagerAdapter
 	@Override
 	public Fragment getItem(int arg0) {
 		Fragment fragment = null;
-		if (arg0 == 0)
-		{
-			fragment = new MainFragment();
-		}
-		if (arg0 == 1)
-		{
-			fragment = new TwelveStepsFragment();
-		}
-		if (arg0 == 2)
-		{
-			fragment = new MeetingFragment();
-		}
-		return fragment;
-	}
+        if (arg0 == 0)
+        {
+            fragment = new MainFragment();
+        }
+        if (arg0 == 1)
+        {
+            fragment = new TwelveStepsFragment();
+        }
+        if (arg0 == 2)
+        {
+            fragment = new MeetingFragment();
+        }
+        if (arg0 == 3)
+        {
+        	fragment = new Home();
+        }
+        return fragment;
+    }
 
 	@Override
 	public int getCount() {
