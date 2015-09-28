@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class HomepageFragment extends Fragment {
@@ -19,6 +20,13 @@ public class HomepageFragment extends Fragment {
 		fragmentView = inflater.inflate(R.layout.homepage, container, false);
 		browser = (WebView) fragmentView.findViewById(R.id.webkit1);
 		browser.getSettings().setJavaScriptEnabled(true);
+		browser.setWebViewClient(new WebViewClient() {
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				view.loadUrl(url);
+				return true;
+			}			
+		});
 		links = getResources().getStringArray(R.array.links);
 		browser.loadUrl(links[1]);
 		return fragmentView;
