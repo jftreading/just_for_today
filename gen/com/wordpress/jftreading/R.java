@@ -63,10 +63,11 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
-        public static final int button_one=0x7f040002;
-        public static final int button_two=0x7f040003;
-        public static final int contact_sponsor=0x7f040005;
+        public static final int button_one=0x7f040005;
+        public static final int button_two=0x7f040006;
+        public static final int contact_sponsor=0x7f040002;
         public static final int et_hint=0x7f040001;
         public static final int meeting=0x7f040004;
+        public static final int share_link=0x7f040003;
     }
 }
