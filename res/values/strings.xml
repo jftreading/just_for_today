@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Just4Today</string><string name="et_hint">Enter message here</string>
     <string name="button_one">Call Landline</string>
-    <string name="button_two">Show Map</string><string name="homepage">https://jftreading.wordpress.com/</string><string name="meeting" >\"For where two or three gather together
+    <string name="button_two">Show Map</string><string name="meeting" >\"For where two or three gather together
     because they are mine, I am there among them.\" - Matthew 18:20
         
     \n\nCome and join our meeting:
@@ -44,10 +44,15 @@ we tried to carry this message to addicts, and to practice
 these principles in all our affairs.</item>
         </string-array><string-array name="page_titles">
         <item>Call before you drink</item>
-        <item>Just for Today</item><item>The Twelve Steps of NA</item>
+        <item>Today\'s reading</item><item>News</item><item>The Twelve Steps of NA</item>
         <item>Location</item>
         
+        
     </string-array>
+        <string-array name="links">
+            <item >https://justfortoday.pythonanywhere.com/jft/</item>
+            <item >https://jftreading.wordpress.com/</item>
+        </string-array>
     
     
     

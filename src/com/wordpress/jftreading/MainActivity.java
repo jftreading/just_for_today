@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 
 public class MainActivity extends FragmentActivity {
 	
-
 	ViewPager viewPager = null;
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -39,13 +38,17 @@ class MyAdapter extends FragmentPagerAdapter
         }
         if (arg0 == 1)
         {
-            fragment = new HomepageFragment();
+        	fragment = new JFTReadingFragment();
         }
         if (arg0 == 2)
         {
-            fragment = new TwelveStepsFragment();
+            fragment = new HomepageFragment();
         }
         if (arg0 == 3)
+        {
+            fragment = new TwelveStepsFragment();
+        }
+        if (arg0 == 4)
         {
         	fragment = new MeetingFragment();
         }
