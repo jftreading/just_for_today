@@ -32,21 +32,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.util.Log;
 
 @SuppressLint("NewApi")
 public class MainFragment extends Fragment implements OnClickListener
 {
-	private static final int PICK_CONTACT_REQUEST = 0;
-	private DBHelper databaseHelper;
-    private EditText textMessage;    
-    private Uri contactUri;
-	private Handler handler;
-	private ProgressDialog dialog;
+	private static final int PICK_CONTACT_REQUEST = 0;	
     private View fragmentView;
     private TextView contactNameView;
     private TextView contactPhoneView;
     private ImageView contactPhotoView;
+    private EditText textMessage;    
+    private DBHelper databaseHelper;
+    private Uri contactUri;
+	private Handler handler;
+	private ProgressDialog dialog;
     
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,7 +77,7 @@ public class MainFragment extends Fragment implements OnClickListener
             if (resultCode == Activity.RESULT_OK) {            	
                 contactUri = intent.getData();
                 String s = contactUri.toString();
-                databaseHelper.saveSponsorData(s);
+                databaseHelper.saveContactData(s);
                 renderContact(intent.getData());                
             }
         }
@@ -249,12 +248,10 @@ public class MainFragment extends Fragment implements OnClickListener
     
     private void searchDatabase() {
         databaseHelper = new DBHelper(getActivity());        
-        Cursor cursor = databaseHelper.getAllSponsorData();        
+        Cursor cursor = databaseHelper.getAllContactData();        
         if (cursor.moveToLast()) {
 			do { String s = cursor.getString(1);
                  contactUri = Uri.parse(s);
-                 //renderContact(mUri);
-				 //Log.d("DB Value", s);
 			} while (cursor.moveToNext());
 		} else {
 			contactUri = null;
@@ -264,14 +261,9 @@ public class MainFragment extends Fragment implements OnClickListener
 		}
     }
 
-	private void renderContact(Uri uri) {        
-
-        if (uri == null) {
-            contactNameView.setText("Select sponsor");
-            contactPhoneView.setText("");
-            contactPhotoView.setImageBitmap(null);            
-        } else {
-            contactNameView.setText(getDisplayName(uri));
+	private void renderContact(Uri uri) {
+        if (uri != null) {
+        	contactNameView.setText(getDisplayName(uri));
             contactPhoneView.setText(getMobileNumber(uri));
             contactPhotoView.setImageBitmap(getPhoto(uri));
         }
