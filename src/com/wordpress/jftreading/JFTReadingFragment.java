@@ -14,7 +14,7 @@ public class JFTReadingFragment extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		fragmentView = inflater.inflate(R.layout.jft_reading, container, false);
+		fragmentView = inflater.inflate(R.layout.webview_fragment, container, false);
 		browser = (WebView) fragmentView.findViewById(R.id.webkit);
 		links = getResources().getStringArray(R.array.links);
 		browser.loadUrl(links[0]);

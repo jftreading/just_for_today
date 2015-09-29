@@ -1,6 +1,8 @@
 package com.wordpress.jftreading;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,7 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class HomepageFragment extends Fragment {
+public class NAWSFragment extends Fragment {
 	private View fragmentView;
 	private WebView browser;
 	private String[] links;
@@ -22,13 +24,19 @@ public class HomepageFragment extends Fragment {
 		browser.getSettings().setJavaScriptEnabled(true);
 		browser.setWebViewClient(new WebViewClient() {
 			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				view.loadUrl(url);
-				return true;
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {				
+				if (url.contains(getResources().getString(R.string.share_link))) {
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+					startActivity(browserIntent);
+					return true;
+				} else {
+				    view.loadUrl(url);
+				    return true;
+				}
 			}			
 		});
 		links = getResources().getStringArray(R.array.links);
-		browser.loadUrl(links[3]);
+		browser.loadUrl(links[1]);
 		return fragmentView;
 	}
 }

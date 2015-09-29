@@ -10,7 +10,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class HomepageFragment extends Fragment {
+public class NAPilipinasFragment extends Fragment {
 	private View fragmentView;
 	private WebView browser;
 	private String[] links;
@@ -28,7 +28,7 @@ public class HomepageFragment extends Fragment {
 			}			
 		});
 		links = getResources().getStringArray(R.array.links);
-		browser.loadUrl(links[3]);
+		browser.loadUrl(links[2]);
 		return fragmentView;
 	}
 }

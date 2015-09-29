@@ -44,14 +44,18 @@ we tried to carry this message to addicts, and to practice
 these principles in all our affairs.</item>
         </string-array><string-array name="page_titles">
         <item>Call before you drink</item>
-        <item>Today\'s reading</item><item>News</item><item>The Twelve Steps of NA</item>
+        <item>Today\'s reading</item><item>NAWS</item><item>NA Pilipinas</item><item>News</item><item>The Twelve Steps of NA</item>
         <item>Location</item>
+        
+        
         
         
     </string-array>
         <string-array name="links">
             <item >https://justfortoday.pythonanywhere.com/jft/</item>
-            <item >https://jftreading.wordpress.com/</item>
+            <item>http://m.na.org/</item><item>http://www.napilipinas.org/</item><item >https://jftreading.wordpress.com/</item>
+            
+            
         </string-array>
         
         

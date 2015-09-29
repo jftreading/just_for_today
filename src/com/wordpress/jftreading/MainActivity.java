@@ -42,13 +42,21 @@ class MyAdapter extends FragmentPagerAdapter
         }
         if (arg0 == 2)
         {
-            fragment = new HomepageFragment();
+            fragment = new NAWSFragment();
         }
         if (arg0 == 3)
         {
-            fragment = new TwelveStepsFragment();
+            fragment = new NAPilipinasFragment();
         }
         if (arg0 == 4)
+        {
+        	fragment = new HomepageFragment();
+        }
+        if (arg0 == 5)
+        {
+        	fragment = new TwelveStepsFragment();
+        }
+        if (arg0 == 6)
         {
         	fragment = new MeetingFragment();
         }
