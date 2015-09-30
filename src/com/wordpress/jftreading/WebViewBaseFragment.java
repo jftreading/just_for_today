@@ -6,16 +6,16 @@ import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
+import android.view.View.OnKeyListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class HomepageFragment extends Fragment {
-	private View fragmentView;
-	private WebView browser;
-	private String[] links;
+public abstract class WebViewBaseFragment extends Fragment {
+	protected View fragmentView;
+	protected WebView browser;
+	protected String[] links;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

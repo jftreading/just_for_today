@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnKeyListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -34,6 +36,25 @@ public class NAWSFragment extends Fragment {
 				    return true;
 				}
 			}			
+		});
+		browser.setOnKeyListener(new OnKeyListener() {
+			
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if (event.getAction() == KeyEvent.ACTION_DOWN){
+					WebView webView = (WebView) v;
+					
+					switch (keyCode) {
+					case KeyEvent.KEYCODE_BACK:
+						if (webView.canGoBack()) {
+							webView.goBack();
+							return true;
+						}						
+						break;
+					}
+				}
+				return false;
+			}
 		});
 		links = getResources().getStringArray(R.array.links);
 		browser.loadUrl(links[1]);
