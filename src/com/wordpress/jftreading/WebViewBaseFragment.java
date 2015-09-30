@@ -1,6 +1,8 @@
 package com.wordpress.jftreading;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnKeyListener;
+import android.webkit.DownloadListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -46,6 +49,16 @@ public abstract class WebViewBaseFragment extends Fragment {
 					}
 				}
 				return false;
+			}
+		});
+		browser.setDownloadListener(new DownloadListener() {
+			
+			@Override
+			public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype,
+					long contentLength) {
+				Uri uri = Uri.parse(url);
+				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+				startActivity(intent);				
 			}
 		});
 		links = getResources().getStringArray(R.array.links);
