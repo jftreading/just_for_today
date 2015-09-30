@@ -56,10 +56,6 @@ class MyAdapter extends FragmentPagerAdapter
         {
         	fragment = new TwelveStepsFragment();
         }
-        if (arg0 == 6)
-        {
-        	fragment = new MeetingFragment();
-        }
         return fragment;
     }
 

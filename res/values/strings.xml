@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Just4Today</string><string name="et_hint">Enter message here</string>
-    <string name="contact_sponsor">Contact sponsor</string><string name="share_link">/?share=</string><string name="meeting">\"For where two or three gather together
-    because they are mine, I am there among them.\" - Matthew 18:20
-        
-    \n\nCome and join our meeting:
-    
-    \n\nHealing Path Foundation-HP, Inc.
-    \n#25 Newport st., cor. Marlboro st., East Fairview, Quezon City, Philippines
-    \nTel. number:  +632 9395917
-        
-    \n\nEvery Sunday 8:45 - 9:45 am
-    </string><string name="button_one">Call Landline</string>
-    <string name="button_two">Show Map</string>
+    <string name="contact_sponsor">Contact sponsor</string><string name="share_link">/?share=</string>
     
     
     <color name="headfirst">#ff8d8d8d</color><string-array name="twelve_steps">
@@ -45,7 +34,6 @@ these principles in all our affairs.</item>
         </string-array><string-array name="page_titles">
         <item>Call before you drink</item>
         <item>Today\'s reading</item><item>NAWS</item><item>NA Pilipinas</item><item>News</item><item>The Twelve Steps of NA</item>
-        <item>Location</item>
         
         
         
