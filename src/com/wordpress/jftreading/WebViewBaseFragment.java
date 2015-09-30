@@ -19,6 +19,7 @@ public abstract class WebViewBaseFragment extends Fragment {
 	protected View fragmentView;
 	protected WebView browser;
 	protected String[] links;
+	protected int mNum;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public abstract class WebViewBaseFragment extends Fragment {
 			}
 		});
 		links = getResources().getStringArray(R.array.links);
-		browser.loadUrl(links[3]);
+		browser.loadUrl(links[mNum]);
 		return fragmentView;
 	}
 }
