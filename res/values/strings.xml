@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Just4Today</string><string name="et_hint">Enter message here</string>
+    <string name="app_name">JFT</string><string name="et_hint">Enter message here</string>
     <string name="contact_sponsor">Contact sponsor</string><string name="share_link">/?share=</string>
     
     
