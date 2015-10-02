@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class MainActivity extends FragmentActivity {
+public class MainFragmentActivity extends FragmentActivity {
 	MyAdapter mAdapter;
 	
 	ViewPager viewPager = null;
@@ -33,8 +33,6 @@ public class MainActivity extends FragmentActivity {
 			Fragment fragment = null;
 			if (arg0 == 0) {
 				fragment = new MainFragment();
-			} else if (arg0 == 5) {
-				fragment = new TwelveStepsFragment();
 			} else {				
 				fragment = WebViewFragment.newInstance(arg0-1);
 			}

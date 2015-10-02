@@ -3,6 +3,8 @@ package com.wordpress.jftreading;
 import java.io.InputStream;
 
 import com.wordpress.jftreading.R;
+import com.wordpress.jftreading.contact.Contact;
+import com.wordpress.jftreading.db.DBHelper;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -36,16 +38,18 @@ import android.provider.ContactsContract;
 @SuppressLint("NewApi")
 public class MainFragment extends Fragment implements OnClickListener
 {
-	private static final int PICK_CONTACT_REQUEST = 0;	
+	private static final int PICK_CONTACT_REQUEST = 0;
+	private static final int ID = 1;
     private View fragmentView;
     private TextView contactNameView;
     private TextView contactPhoneView;
     private ImageView contactPhotoView;
     private EditText textMessage;    
-    private DBHelper databaseHelper;
+    private DBHelper dbHelper;
+    private Contact contact;
     private Uri contactUri;
 	private Handler handler;
-	private ProgressDialog dialog;
+	private ProgressDialog dialog;	
     
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,29 +59,38 @@ public class MainFragment extends Fragment implements OnClickListener
     	contactNameView = (TextView) fragmentView.findViewById(R.id.contact_name);
         contactPhoneView = (TextView) fragmentView.findViewById(R.id.contact_phone);
         contactPhotoView = (ImageView) fragmentView.findViewById(R.id.portrait);
-        textMessage = (EditText) fragmentView.findViewById(R.id.etId);
+        textMessage = (EditText) fragmentView.findViewById(R.id.etId);        
         
         ImageButton updateContact = (ImageButton) fragmentView.findViewById(R.id.update_contact);
         ImageButton callBut = (ImageButton) fragmentView.findViewById(R.id.call_btn);
-        ImageButton sendBut = (ImageButton) fragmentView.findViewById(R.id.send_btn);
+        ImageButton sendBut = (ImageButton) fragmentView.findViewById(R.id.send_btn);        
         
         updateContact.setOnClickListener(this);
         callBut.setOnClickListener(this);        
-        sendBut.setOnClickListener(this);
+        sendBut.setOnClickListener(this);        
         
-        searchDatabase();
-        renderContact(contactUri);
-        handler = new Handler();
+        dbHelper = new DBHelper(getActivity());        
+        int count = dbHelper.getContactDataCount();
         
+        if (count > 0) {
+        	contact = dbHelper.getContactData(ID);
+        	contactUri = Uri.parse(contact.getUri()); 
+        	renderContact(contactUri);
+        }
+        
+        handler = new Handler();        
 		return fragmentView;
 	}
     
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	if (requestCode == PICK_CONTACT_REQUEST) {
-            if (resultCode == Activity.RESULT_OK) {            	
-                contactUri = intent.getData();
-                String s = contactUri.toString();
-                databaseHelper.saveContactData(s);
+            if (resultCode == Activity.RESULT_OK) {
+            	contactUri = intent.getData();
+            	contact = new Contact(ID, contactUri.toString(),
+            			getDisplayName(contactUri),
+            			getMobileNumber(contactUri), null);
+            	dbHelper.deleteAllContactData();
+                dbHelper.addContactData(contact);
                 renderContact(intent.getData());                
             }
         }
@@ -245,28 +258,11 @@ public class MainFragment extends Fragment implements OnClickListener
         phoneCursor.close();
         return phoneNumber;
     }
-    
-    private void searchDatabase() {
-        databaseHelper = new DBHelper(getActivity());        
-        Cursor cursor = databaseHelper.getAllContactData();        
-        if (cursor.moveToLast()) {
-			do { String s = cursor.getString(1);
-                 contactUri = Uri.parse(s);
-			} while (cursor.moveToNext());
-		} else {
-			contactUri = null;
-		}
-        if (!cursor.isClosed()) {
-			cursor.close();
-		}
-    }
 
 	private void renderContact(Uri uri) {
-        if (uri != null) {
-        	contactNameView.setText(getDisplayName(uri));
-            contactPhoneView.setText(getMobileNumber(uri));
-            contactPhotoView.setImageBitmap(getPhoto(uri));
-        }
+		contactNameView.setText(getDisplayName(uri));
+        contactPhoneView.setText(getMobileNumber(uri));
+        contactPhotoView.setImageBitmap(getPhoto(uri));
     }
 
     private String getDisplayName(Uri uri) { 

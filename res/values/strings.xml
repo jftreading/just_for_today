@@ -4,36 +4,9 @@
     <string name="contact_sponsor">Contact sponsor</string><string name="share_link">/?share=</string>
     
     
-    <color name="headfirst">#ff8d8d8d</color><string-array name="twelve_steps">
-                <item>1. We admitted that we were powerless over our addiction, that
-our lives had become unmanageable.</item>
-                <item>2. We came to believe that a Power greater than ourselves
-could restore us to sanity.</item>
-                <item>3. We made a decision to turn our will and our lives over to the
-care of God as we understood Him.</item>
-                <item>4. We made a searching and fearless moral inventory of
-ourselves.</item>
-                <item>5. We admitted to God, to ourselves, and to another human
-being the exact nature of our wrongs.</item>
-                <item>6. We were entirely ready to have God remove all these defects
-of character.</item>
-                <item>7. We humbly asked Him to remove our shortcomings.</item>
-                <item>8. We made a list of all persons we had harmed and became
-willing to make amends to them all.</item>
-                <item>9. We made direct amends to such people wherever possible,
-except when to do so would injure them or others.</item>
-                <item>10. We continued to take personal inventory and when we were
-wrong promptly admitted it.</item>
-                <item>11. We sought through prayer and meditation to improve our
-conscious contact with God as we understood Him, praying
-only for knowledge of His will for us and the power to carry
-that out.</item>
-                <item>12. Having had a spiritual awakening as a result of these steps,
-we tried to carry this message to addicts, and to practice
-these principles in all our affairs.</item>
-        </string-array><string-array name="page_titles">
+    <color name="headfirst">#ff8d8d8d</color><string-array name="page_titles">
         <item>Call before you drink</item>
-        <item>Today\'s reading</item><item>NAWS</item><item>NA Pilipinas</item><item>News</item><item>The Twelve Steps of NA</item>
+        <item>Today\'s reading</item><item>NAWS</item><item>NA Pilipinas</item><item>News</item>
         
         
         

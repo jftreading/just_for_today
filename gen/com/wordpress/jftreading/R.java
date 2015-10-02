@@ -9,9 +9,8 @@ package com.wordpress.jftreading;
 
 public final class R {
     public static final class array {
-        public static final int links=0x7f060002;
-        public static final int page_titles=0x7f060001;
-        public static final int twelve_steps=0x7f060000;
+        public static final int links=0x7f060001;
+        public static final int page_titles=0x7f060000;
     }
     public static final class attr {
     }
@@ -48,8 +47,7 @@ public final class R {
         public static final int main=0x7f030000;
         public static final int main_fragment=0x7f030001;
         public static final int row=0x7f030002;
-        public static final int twelve_steps_fragment=0x7f030003;
-        public static final int webview_fragment=0x7f030004;
+        public static final int webview_fragment=0x7f030003;
     }
     public static final class menu {
         public static final int options_menu=0x7f070000;
