@@ -252,7 +252,8 @@ public class MainFragment extends Fragment implements OnClickListener
 		switch (item.getItemId()) {
 		case R.id.item1:
 			dbHelper.deleteAllContactData();
-			Fragment fragment = this;
+			contactUri = null;
+			Fragment fragment = this;			
 			getActivity().getSupportFragmentManager()
 			    .beginTransaction()
 			    .detach(this)
