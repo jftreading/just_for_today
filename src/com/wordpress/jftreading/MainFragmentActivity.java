@@ -1,6 +1,8 @@
 package com.wordpress.jftreading;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -34,7 +36,7 @@ public class MainFragmentActivity extends FragmentActivity {
 			if (arg0 == 0) {
 				fragment = new MainFragment();
 			} else {				
-				fragment = WebViewFragment.newInstance(arg0-1);
+				fragment = WebViewFragment.newInstance(arg0);
 			}
 			return fragment;
 		}
@@ -55,6 +57,8 @@ public class MainFragmentActivity extends FragmentActivity {
 	}
 	
 	public static class WebViewFragment extends WebViewBaseFragment {
+		private String[] links;
+		private int mNum;
 		
 		static WebViewFragment newInstance(int num) {
 			WebViewFragment f = new WebViewFragment();
@@ -68,7 +72,22 @@ public class MainFragmentActivity extends FragmentActivity {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
-			mNum = getArguments() != null ? getArguments().getInt("num") : 1;			
-		}		
+			mNum = getArguments() != null ? getArguments().getInt("num") : 1;
+			links = getResources().getStringArray(R.array.links);
+			loadPage();
+		}
+		
+		private void loadPage() {
+			ConnectivityManager check = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo wifiNetwork = check.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+			NetworkInfo mobileNetwork = check.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+			
+			if (wifiNetwork.isConnected() || mobileNetwork.isConnected()) {
+				link = links[mNum];
+			} else {
+				mNum = 0;
+				link = links[mNum];
+			}
+		}
 	}
 }

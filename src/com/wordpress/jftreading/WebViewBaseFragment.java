@@ -18,8 +18,7 @@ import android.webkit.WebViewClient;
 public abstract class WebViewBaseFragment extends Fragment {
 	protected View fragmentView;
 	protected WebView browser;
-	protected String[] links;
-	protected int mNum;
+	protected String link;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,9 +60,8 @@ public abstract class WebViewBaseFragment extends Fragment {
 				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 				startActivity(intent);				
 			}
-		});
-		links = getResources().getStringArray(R.array.links);
-		browser.loadUrl(links[mNum]);
+		});		
+		browser.loadUrl(link);
 		return fragmentView;
 	}
 }
