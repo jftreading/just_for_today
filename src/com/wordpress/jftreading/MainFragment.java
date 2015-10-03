@@ -16,6 +16,9 @@ import android.support.v4.app.Fragment;
 import android.telephony.SmsManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -49,9 +52,15 @@ public class MainFragment extends Fragment implements OnClickListener
     private Contact contact;
     private Uri contactUri;
 	private Handler handler;
-	private ProgressDialog dialog;	
-    
+	private ProgressDialog dialog;
+	
     @Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {    	
     	fragmentView = inflater.inflate(R.layout.main_fragment, container, false);
@@ -231,8 +240,31 @@ public class MainFragment extends Fragment implements OnClickListener
 			break;
 		}
 	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.options_menu, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.item1:
+			dbHelper.deleteAllContactData();
+			Fragment fragment = this;
+			getActivity().getSupportFragmentManager()
+			    .beginTransaction()
+			    .detach(this)
+			    .attach(fragment)
+			    .commit();
+			return true;
+		default:
+			return true;
+		}
+	}
     
-    protected String getMobileNumber(Uri uri) {
+    private String getMobileNumber(Uri uri) {
         String phoneNumber = null;
         String id = null;
 
@@ -299,5 +331,5 @@ public class MainFragment extends Fragment implements OnClickListener
             }
         }
         return photo;
-    }	
+    }    
 }
