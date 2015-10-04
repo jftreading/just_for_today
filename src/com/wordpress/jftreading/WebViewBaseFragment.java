@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 @SuppressLint("SetJavaScriptEnabled")
-public abstract class WebViewBaseFragment extends Fragment {
+public abstract class WebViewBaseFragment extends Fragment implements WebViewInterface {
 	protected View fragmentView;
 	protected WebView browser;
 	protected String link;
@@ -30,6 +29,8 @@ public abstract class WebViewBaseFragment extends Fragment {
 		browser.setWebViewClient(new WebViewClient() {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				if (!isNetworkUp())
+					url = selectRightLink();
 				view.loadUrl(url);
 				return true;
 			}			
@@ -64,14 +65,9 @@ public abstract class WebViewBaseFragment extends Fragment {
 			}
 		});
 		browser.addJavascriptInterface(new MyJavascriptInterface(), "Android");
-		checkConnectivity();
-		browser.loadUrl(link);
+		browser.loadUrl(selectRightLink());
 		return fragmentView;
 	}	
-
-	public void checkConnectivity() {
-		Log.d("JFTREADING", "Hi from checkConnectivity PARENT frag!");
-	};
 	
 	private void refreshFragment() {
 		Fragment fragment = this;			
@@ -85,8 +81,7 @@ public abstract class WebViewBaseFragment extends Fragment {
 	public class MyJavascriptInterface {
 		@JavascriptInterface
 		public void reloadPage() {
-			Log.d("JFTREADING", "Hi from Javascript interface!");			
-			checkConnectivity();
+			link = selectRightLink();
 			refreshFragment();
 		}
 	}

@@ -9,7 +9,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.view.View;
+import android.view.View.OnLongClickListener;
 
 public class MainFragmentActivity extends FragmentActivity {
 	MyAdapter mAdapter;
@@ -75,21 +76,37 @@ public class MainFragmentActivity extends FragmentActivity {
 			super.onCreate(savedInstanceState);
 			mNum = getArguments() != null ? getArguments().getInt("num") : 1;
 			links = getResources().getStringArray(R.array.links);
-		}		
-		
+		}
+
 		@Override
-		public void checkConnectivity() {
-			Log.d("JFTREADING", "Hi from checkConnectivity CHILD frag.");
+		public boolean isNetworkUp() {
 			ConnectivityManager check = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo wifiNetwork = check.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 			NetworkInfo mobileNetwork = check.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 			
-			if (wifiNetwork.isConnected() || mobileNetwork.isConnected()) {
-				//mNum = 0; //DEBUG
-				link = links[mNum];
-			} else {
+			if (wifiNetwork.isConnected() || mobileNetwork.isConnected())
+				return true;
+			return false;
+		}
+
+		@Override
+		public String selectRightLink() {
+			String link = links[mNum];
+			if (!isNetworkUp()) {
+				browser.setOnLongClickListener(new OnLongClickListener() {
+					
+					@Override
+					public boolean onLongClick(View v) {
+						return true;
+					}
+				});
+				browser.setLongClickable(false);
 				link = links[0];
+			} else {
+			    browser.setOnLongClickListener(null);
+			    browser.setLongClickable(true);
 			}
+			return link;
 		}
 	}
 }
