@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 public class MainFragmentActivity extends FragmentActivity {
 	MyAdapter mAdapter;
@@ -74,19 +75,20 @@ public class MainFragmentActivity extends FragmentActivity {
 			super.onCreate(savedInstanceState);
 			mNum = getArguments() != null ? getArguments().getInt("num") : 1;
 			links = getResources().getStringArray(R.array.links);
-			loadPage();
-		}
+		}		
 		
-		private void loadPage() {
+		@Override
+		public void checkConnectivity() {
+			Log.d("JFTREADING", "Hi from checkConnectivity CHILD frag.");
 			ConnectivityManager check = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo wifiNetwork = check.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 			NetworkInfo mobileNetwork = check.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 			
 			if (wifiNetwork.isConnected() || mobileNetwork.isConnected()) {
+				//mNum = 0; //DEBUG
 				link = links[mNum];
 			} else {
-				mNum = 0;
-				link = links[mNum];
+				link = links[0];
 			}
 		}
 	}

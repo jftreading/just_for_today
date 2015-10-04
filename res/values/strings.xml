@@ -13,7 +13,7 @@
         
     </string-array>
         <string-array name="links">
-            <item>file:///android_asset/www/index.html/</item><item >https://justfortoday.pythonanywhere.com/jft/</item>
+            <item>file:///android_asset/www/index.html</item><item >https://justfortoday.pythonanywhere.com/jft/</item>
             <item>http://m.na.org/</item><item >https://jftreading.wordpress.com/</item>
             
             

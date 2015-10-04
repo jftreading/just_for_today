@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnKeyListener;
 import android.webkit.DownloadListener;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -23,7 +25,7 @@ public abstract class WebViewBaseFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		fragmentView = inflater.inflate(R.layout.webview_fragment, container, false);
-		browser = (WebView) fragmentView.findViewById(R.id.webkit);
+		browser = (WebView) fragmentView.findViewById(R.id.webkit);		
 		browser.getSettings().setJavaScriptEnabled(true);
 		browser.setWebViewClient(new WebViewClient() {
 			@Override
@@ -60,8 +62,32 @@ public abstract class WebViewBaseFragment extends Fragment {
 				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 				startActivity(intent);				
 			}
-		});		
+		});
+		browser.addJavascriptInterface(new MyJavascriptInterface(), "Android");
+		checkConnectivity();
 		browser.loadUrl(link);
 		return fragmentView;
+	}	
+
+	public void checkConnectivity() {
+		Log.d("JFTREADING", "Hi from checkConnectivity PARENT frag!");
+	};
+	
+	private void refreshFragment() {
+		Fragment fragment = this;			
+		getActivity().getSupportFragmentManager()
+		    .beginTransaction()
+		    .detach(this)
+		    .attach(fragment)
+		    .commit();
+	}
+	
+	public class MyJavascriptInterface {
+		@JavascriptInterface
+		public void reloadPage() {
+			Log.d("JFTREADING", "Hi from Javascript interface!");			
+			checkConnectivity();
+			refreshFragment();
+		}
 	}
 }

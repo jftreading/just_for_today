@@ -1,0 +1,3 @@
+function reloadAndroidPage() {
+   Android.reloadPage(); 
+}
