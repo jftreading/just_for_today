@@ -9,8 +9,7 @@ body {
 .container {
         border-radius: 1em;
         position: absolute;
-        top: 25%;
-        left: 5%;
+        top: 50%;
 }
 .container p {
         color: gray;
@@ -18,8 +17,10 @@ body {
         text-align: left;
         margin: 10px;
 }
-.container span {
-        margin-left: 25%;
+.container a {
+        position: relative;
+        left: 50%;
+        margin-left: -75px;
 }
 .myButton {
 	-moz-box-shadow: 0px 10px 14px -7px #276873;
