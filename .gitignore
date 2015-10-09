@@ -1,2 +1,4 @@
 bin
 .metadata
+ant.properties
+*.keystore
