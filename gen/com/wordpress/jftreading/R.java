@@ -54,10 +54,11 @@ public final class R {
         public static final int options_menu=0x7f070000;
     }
     public static final class string {
+        public static final int app_filename=0x7f040001;
         public static final int app_name=0x7f040000;
-        public static final int contact_sponsor=0x7f040002;
-        public static final int et_hint=0x7f040001;
-        public static final int om1=0x7f040004;
-        public static final int share_link=0x7f040003;
+        public static final int contact_sponsor=0x7f040003;
+        public static final int et_hint=0x7f040002;
+        public static final int om1=0x7f040005;
+        public static final int share_link=0x7f040004;
     }
 }

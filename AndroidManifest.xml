@@ -20,5 +20,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-sdk android:targetSdkVersion="17" android:maxSdkVersion="17" android:minSdkVersion="4"/>
 </manifest>

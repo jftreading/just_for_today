@@ -23,7 +23,7 @@ public class MainFragmentActivity extends FragmentActivity {
 		mAdapter = new MyAdapter(getSupportFragmentManager(), this);
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setAdapter(mAdapter);
-		UserHandler handler = new UserHandler();
+		UserHandler handler = new UserHandler(this);
 		handler.processFeed();
 	}
 	
