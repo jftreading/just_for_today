@@ -32,7 +32,7 @@
     android:layout_below="@+id/contact_phone"
     android:layout_alignLeft="@+id/contact_name"
     android:layout_marginTop="10dp"    
-    android:src="@drawable/button_update"
+    android:src="@drawable/button_search"
     android:background="@null"
     />
 <ImageView

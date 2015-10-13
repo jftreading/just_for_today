@@ -19,17 +19,17 @@ public final class R {
     }
     public static final class drawable {
         public static final int button_call=0x7f020000;
-        public static final int button_send=0x7f020001;
-        public static final int button_update=0x7f020002;
+        public static final int button_search=0x7f020001;
+        public static final int button_send=0x7f020002;
         public static final int call_btn=0x7f020003;
         public static final int call_btn_pressed=0x7f020004;
         public static final int ic_launcher=0x7f020005;
         public static final int nalogo=0x7f020006;
         public static final int portrait=0x7f020007;
-        public static final int send_btn=0x7f020008;
-        public static final int send_btn_pressed=0x7f020009;
-        public static final int update_btn=0x7f02000a;
-        public static final int update_btn_pressed=0x7f02000b;
+        public static final int search=0x7f020008;
+        public static final int search_pressed=0x7f020009;
+        public static final int send_btn=0x7f02000a;
+        public static final int send_btn_pressed=0x7f02000b;
     }
     public static final class id {
         public static final int call_btn=0x7f080008;
