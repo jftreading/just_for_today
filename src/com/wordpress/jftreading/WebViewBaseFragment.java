@@ -19,7 +19,6 @@ import android.webkit.WebViewClient;
 public abstract class WebViewBaseFragment extends Fragment implements WebViewInterface {
 	protected View fragmentView;
 	protected WebView browser;
-	protected String link;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,8 +28,8 @@ public abstract class WebViewBaseFragment extends Fragment implements WebViewInt
 		browser.setWebViewClient(new WebViewClient() {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				if (!isNetworkUp())
-					url = selectRightLink();
+				if (!networkIsUp())
+					url = getErrorPage();
 				view.loadUrl(url);
 				return true;
 			}			
@@ -65,7 +64,7 @@ public abstract class WebViewBaseFragment extends Fragment implements WebViewInt
 			}
 		});
 		browser.addJavascriptInterface(new MyJavascriptInterface(), "Android");
-		browser.loadUrl(selectRightLink());
+		browser.loadUrl(linkSelector());
 		return fragmentView;
 	}	
 	
@@ -81,7 +80,6 @@ public abstract class WebViewBaseFragment extends Fragment implements WebViewInt
 	public class MyJavascriptInterface {
 		@JavascriptInterface
 		public void reloadPage() {
-			link = selectRightLink();
 			refreshFragment();
 		}
 	}

@@ -7,13 +7,13 @@
     <color name="headfirst">#ff8d8d8d</color><string-array name="page_titles">
         <item>Call before you drink</item>
         <item>Today\'s reading</item><item>NAWS</item><item>News</item>
+        <item >Recovery</item>
         
         
         
         
     </string-array>
-        <string-array name="links">
-            <item>file:///android_asset/www/index.html</item><item >https://justfortoday.pythonanywhere.com/jft/</item>
+        <string-array name="links"><item >https://justfortoday.pythonanywhere.com/jft/</item>
             <item>http://m.na.org/</item><item >https://jftreading.wordpress.com/</item>
             <item >https://github.com/jftreading/just_for_today/releases/download/</item><item >https://raw.githubusercontent.com/jftreading/just_for_today/master/AndroidManifest.xml</item>
             
@@ -21,7 +21,11 @@
             
             
         </string-array>
-        <string name="om1">Clear contact</string>
+        <string-array name="offline_links">
+            <item >file:///android_asset/www/index.html</item>
+            <item >file:///android_asset/www/error.html</item>
+        </string-array><string name="om1">Clear contact</string>
+        
         
         
         

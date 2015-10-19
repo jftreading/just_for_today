@@ -10,6 +10,7 @@ package com.wordpress.jftreading;
 public final class R {
     public static final class array {
         public static final int links=0x7f060001;
+        public static final int offline_links=0x7f060002;
         public static final int page_titles=0x7f060000;
     }
     public static final class attr {

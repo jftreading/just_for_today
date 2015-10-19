@@ -9,11 +9,10 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.view.View.OnLongClickListener;
 
 public class MainFragmentActivity extends FragmentActivity {
-	MyAdapter mAdapter;
+	private MyAdapter mAdapter;
+	private static String[] pageTitles;
 	
 	ViewPager viewPager = null;
 	@Override
@@ -28,7 +27,7 @@ public class MainFragmentActivity extends FragmentActivity {
 	}
 	
 	public static class MyAdapter extends FragmentPagerAdapter {
-		private String[] pageTitles;
+		
 		public MyAdapter(FragmentManager fm, Context context) {			
 			super(fm);
 			pageTitles = context.getResources().getStringArray(R.array.page_titles);
@@ -40,7 +39,7 @@ public class MainFragmentActivity extends FragmentActivity {
 			if (arg0 == 0) {
 				fragment = new MainFragment();
 			} else {				
-				fragment = WebViewFragment.newInstance(arg0);
+				fragment = WebViewFragment.newInstance(arg0 - 1);
 			}
 			return fragment;
 		}
@@ -61,8 +60,8 @@ public class MainFragmentActivity extends FragmentActivity {
 	}
 	
 	public static class WebViewFragment extends WebViewBaseFragment {
-		private String[] links;
-		private int mNum;
+		private String[] links, offlineLinks;
+		private int mNum;		
 		
 		static WebViewFragment newInstance(int num) {
 			WebViewFragment f = new WebViewFragment();
@@ -78,10 +77,11 @@ public class MainFragmentActivity extends FragmentActivity {
 			super.onCreate(savedInstanceState);
 			mNum = getArguments() != null ? getArguments().getInt("num") : 1;
 			links = getResources().getStringArray(R.array.links);
+			offlineLinks = getResources().getStringArray(R.array.offline_links);
 		}
 
 		@Override
-		public boolean isNetworkUp() {
+		public boolean networkIsUp() {
 			ConnectivityManager check = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo wifiNetwork = check.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 			NetworkInfo mobileNetwork = check.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
@@ -92,23 +92,20 @@ public class MainFragmentActivity extends FragmentActivity {
 		}
 
 		@Override
-		public String selectRightLink() {
-			String link = links[mNum];
-			if (!isNetworkUp()) {
-				browser.setOnLongClickListener(new OnLongClickListener() {
-					
-					@Override
-					public boolean onLongClick(View v) {
-						return true;
-					}
-				});
-				browser.setLongClickable(false);
-				link = links[0];
-			} else {
-			    browser.setOnLongClickListener(null);
-			    browser.setLongClickable(true);
+		public String linkSelector() {
+			String link = links[mNum];			
+			if (!networkIsUp()) {
+				link = offlineLinks[1];	
+			}
+			if (mNum == 3) {
+				link = offlineLinks[0];
 			}
 			return link;
+		}
+
+		@Override
+		public String getErrorPage() {
+			return offlineLinks[1];
 		}
 	}
 }
