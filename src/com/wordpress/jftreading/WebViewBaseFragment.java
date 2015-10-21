@@ -39,8 +39,13 @@ public abstract class WebViewBaseFragment extends Fragment implements WebViewInt
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				if (!networkIsUp())
-					url = getErrorPage();
-				view.loadUrl(url);
+				    url = getErrorPage();
+                                if (url.startsWith("http:") || url.startsWith("https:"))
+                                    return false;
+                                
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                startActivity(intent);
+				//view.loadUrl(url);
 				return true;
 			}			
 		});
