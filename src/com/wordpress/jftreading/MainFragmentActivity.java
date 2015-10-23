@@ -19,6 +19,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 public class MainFragmentActivity extends FragmentActivity {
 	private MyAdapter mAdapter;
@@ -87,16 +88,31 @@ public class MainFragmentActivity extends FragmentActivity {
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			mNum = getArguments() != null ? getArguments().getInt("num") : 1;
+			if (mNum == 3) {
+				offlinePage = true;
+			} else { 
+				offlinePage = false;
+			}
 			links = getResources().getStringArray(R.array.links);
 			offlineLinks = getResources().getStringArray(R.array.offline_links);
-			if (savedInstanceState != null)
+			if (savedInstanceState == null) {
+				savedLink = null;
+			} else {
 				savedLink = savedInstanceState.getString("link");
+			}
 		}
 		
 		@Override
 		public void onSaveInstanceState(Bundle outState) {
 			super.onSaveInstanceState(outState);
-			String currentLink = browser.getUrl();
+			Log.d("JFT", "onSaveInstanceState is called.");
+			String currentLink = null;
+			try {
+				currentLink = browser.getUrl();
+				Log.d("JFT", "Going to save current link: " + currentLink);
+			} catch (Exception e) {
+				Log.e("JFT", "Error occured: " + e.getMessage());
+			}			
 			outState.putString("link", currentLink);
 		}
 
@@ -106,23 +122,29 @@ public class MainFragmentActivity extends FragmentActivity {
 			NetworkInfo wifiNetwork = check.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 			NetworkInfo mobileNetwork = check.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 			
-			if (wifiNetwork.isConnected() || mobileNetwork.isConnected())
+			if (wifiNetwork.isConnected() || mobileNetwork.isConnected()) {
 				return true;
+			}
 			return false;
 		}
 
 		@Override
 		public String linkSelector() {
-			if (savedLink != null) {
-			    return savedLink;	
-			}						
+			String link = links[mNum];									
 			if (!networkIsUp()) {
-				return offlineLinks[1];	
+				link = offlineLinks[1];
 			}
 			if (mNum == 3) {
-				return offlineLinks[0];
+                            if (savedLink != null) {
+                                link = savedLink;
+                            } else {
+				link = offlineLinks[0];
+                            }
 			}
-			return links[mNum];
+			if (savedLink != null && networkIsUp()) {
+			    link = savedLink;
+			}
+			return link;
 		}
 
 		@Override

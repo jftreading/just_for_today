@@ -29,6 +29,7 @@ import android.webkit.WebViewClient;
 public abstract class WebViewBaseFragment extends Fragment implements WebViewInterface {
 	protected View fragmentView;
 	protected WebView browser;
+	protected boolean offlinePage;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public abstract class WebViewBaseFragment extends Fragment implements WebViewInt
 		browser.setWebViewClient(new WebViewClient() {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				if (!networkIsUp()) {
+				if (!networkIsUp() && !offlinePage) {
 				    view.loadUrl(getErrorPage());
 				    return true;
 				}
