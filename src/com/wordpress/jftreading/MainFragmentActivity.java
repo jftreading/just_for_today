@@ -70,6 +70,7 @@ public class MainFragmentActivity extends FragmentActivity {
 	}
 	
 	public static class WebViewFragment extends WebViewBaseFragment {
+		private String savedLink;
 		private String[] links, offlineLinks;
 		private int mNum;		
 		
@@ -88,6 +89,15 @@ public class MainFragmentActivity extends FragmentActivity {
 			mNum = getArguments() != null ? getArguments().getInt("num") : 1;
 			links = getResources().getStringArray(R.array.links);
 			offlineLinks = getResources().getStringArray(R.array.offline_links);
+			if (savedInstanceState != null)
+				savedLink = savedInstanceState.getString("link");
+		}
+		
+		@Override
+		public void onSaveInstanceState(Bundle outState) {
+			super.onSaveInstanceState(outState);
+			String currentLink = browser.getUrl();
+			outState.putString("link", currentLink);
 		}
 
 		@Override
@@ -103,14 +113,16 @@ public class MainFragmentActivity extends FragmentActivity {
 
 		@Override
 		public String linkSelector() {
-			String link = links[mNum];			
+			if (savedLink != null) {
+			    return savedLink;	
+			}						
 			if (!networkIsUp()) {
-				link = offlineLinks[1];	
+				return offlineLinks[1];	
 			}
 			if (mNum == 3) {
-				link = offlineLinks[0];
+				return offlineLinks[0];
 			}
-			return link;
+			return links[mNum];
 		}
 
 		@Override
