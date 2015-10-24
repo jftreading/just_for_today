@@ -1,9 +1,12 @@
-# Android project:  Call B4U Drink
+# JFT Recovery app for Android
 
-This is an Android application that demonstrates
-simple SMS messaging and making calls.  It utilizes
-Android SDK API 17.  Most ideas and codes were taken
-from the [*Head First Android Development book*](http://shop.oreilly.com/product/0636920029045.do),
-others were already the author's original work.
-Also, some code snippets were taken from
-[COMPILETIMEERROR.com](http://www.compiletimeerror.com/).
+A nice app that:
+
+ - Ease access to Just for Today readings
+ - Sends SMS and makes calls
+ - Provides quick look up to The Twelve Steps
+
+This app targets Android SDK API 17, makes use of Android support v4 library and [*jQT*](http://jqtjs.com/).
+
+Website:  [*jftreading.wordpress.com*](http://jftreading.wordpress.com/)
+
