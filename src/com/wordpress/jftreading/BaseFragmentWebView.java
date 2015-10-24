@@ -22,6 +22,8 @@ import android.view.ViewGroup;
 import android.view.View.OnKeyListener;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -50,6 +52,12 @@ public abstract class BaseFragmentWebView extends Fragment implements WebViewInt
                 startActivity(intent);
 				return true;
 			}			
+		});
+		browser.setWebChromeClient(new WebChromeClient() {
+			@Override
+			public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
+				return super.onJsConfirm(view, url, message, result);
+			}
 		});
 		browser.setOnKeyListener(new OnKeyListener() {
 			

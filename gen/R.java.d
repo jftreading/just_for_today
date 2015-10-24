@@ -1,0 +1,22 @@
+/home/rye/workspace/just_for_today/gen/com/wordpress/jftreading/R.java \
+ : /home/rye/workspace/just_for_today/res/drawable-hdpi/button_call.xml \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/call_btn.png \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/button_search.xml \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/button_send.xml \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/search.png \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/nalogo.9.png \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/ic_launcher.png \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/call_btn_pressed.png \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/search_pressed.png \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/portrait.jpg \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/send_btn.png \
+/home/rye/workspace/just_for_today/res/drawable-hdpi/send_btn_pressed.png \
+/home/rye/workspace/just_for_today/res/values/strings.xml \
+/home/rye/workspace/just_for_today/res/menu/options_menu.xml \
+/home/rye/workspace/just_for_today/res/drawable-mdpi/ic_launcher.png \
+/home/rye/workspace/just_for_today/res/drawable-xhdpi/ic_launcher.png \
+/home/rye/workspace/just_for_today/res/layout/main.xml \
+/home/rye/workspace/just_for_today/res/layout/main_fragment.xml \
+/home/rye/workspace/just_for_today/res/layout/row.xml \
+/home/rye/workspace/just_for_today/res/layout/webview_fragment.xml \
+/home/rye/workspace/just_for_today/bin/AndroidManifest.xml \
