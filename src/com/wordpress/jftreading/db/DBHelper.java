@@ -20,7 +20,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DBHelper implements CRUDOperations {
     private static final int DATABASE_VERSION = 1;
@@ -43,7 +42,6 @@ public class DBHelper implements CRUDOperations {
 
 	@Override
 	public void addContactData(Contact contact) {
-		Log.d("dbHelper", "Add contact data values.");
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(CONTACT_COLUMN_URI, contact.getUri());
 		contentValues.put(CONTACT_COLUMN_NAME, contact.getName());

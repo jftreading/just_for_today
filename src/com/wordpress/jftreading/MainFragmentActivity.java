@@ -19,7 +19,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 public class MainFragmentActivity extends FragmentActivity {
 	private MyAdapter mAdapter;
@@ -105,13 +104,11 @@ public class MainFragmentActivity extends FragmentActivity {
 		@Override
 		public void onSaveInstanceState(Bundle outState) {
 			super.onSaveInstanceState(outState);
-			Log.d("JFT", "onSaveInstanceState is called.");
 			String currentLink = null;
 			try {
 				currentLink = browser.getUrl();
-				Log.d("JFT", "Going to save current link: " + currentLink);
 			} catch (Exception e) {
-				Log.e("JFT", "Error occured: " + e.getMessage());
+				
 			}			
 			outState.putString("link", currentLink);
 		}

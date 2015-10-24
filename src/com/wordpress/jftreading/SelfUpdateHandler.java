@@ -80,10 +80,9 @@ public class SelfUpdateHandler extends DefaultHandler {
 				reader.setContentHandler(params[0]);
 				
 				InputStream inputStream = new URL(urlToParse).openStream();
-				Log.d("JFT", "Parsing AndroidManifest.xml");
 				reader.parse(new InputSource(inputStream));
 			} catch (Exception e) {
-				Log.e("JFT", "Error: " + e.getMessage());
+				
 			}
 			return null;
 		}
@@ -93,7 +92,6 @@ public class SelfUpdateHandler extends DefaultHandler {
 			try {
 				PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
 				if (Integer.parseInt(versionCode) > packageInfo.versionCode) {
-					Log.d("JFT", "A new version available!");
 					AsyncTaskDownloader downloader = new AsyncTaskDownloader();
 					downloader.execute();					
 				}				
