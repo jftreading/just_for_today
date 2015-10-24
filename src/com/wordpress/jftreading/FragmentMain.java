@@ -49,7 +49,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 
 @SuppressLint("NewApi")
-public class MainFragment extends Fragment implements OnClickListener
+public class FragmentMain extends Fragment implements OnClickListener
 {
 	private static final int PICK_CONTACT_REQUEST = 0;
 	private static final int ID = 1;

@@ -26,7 +26,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 @SuppressLint("SetJavaScriptEnabled")
-public abstract class WebViewBaseFragment extends Fragment implements WebViewInterface {
+public abstract class BaseFragmentWebView extends Fragment implements WebViewInterface {
 	protected View fragmentView;
 	protected WebView browser;
 	protected boolean offlinePage;

@@ -33,7 +33,7 @@ public class MainFragmentActivity extends FragmentActivity {
 		mAdapter = new MyAdapter(getSupportFragmentManager(), this);
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setAdapter(mAdapter);
-		UserHandler handler = new UserHandler(this);
+		SelfUpdateHandler handler = new SelfUpdateHandler(this);
 		handler.processFeed();
 	}
 	
@@ -48,7 +48,7 @@ public class MainFragmentActivity extends FragmentActivity {
 		public Fragment getItem(int arg0) {
 			Fragment fragment = null;
 			if (arg0 == 0) {
-				fragment = new MainFragment();
+				fragment = new FragmentMain();
 			} else {				
 				fragment = WebViewFragment.newInstance(arg0 - 1);
 			}
@@ -70,7 +70,7 @@ public class MainFragmentActivity extends FragmentActivity {
 		}
 	}
 	
-	public static class WebViewFragment extends WebViewBaseFragment {
+	public static class WebViewFragment extends BaseFragmentWebView {
 		private String savedLink;
 		private String[] links, offlineLinks;
 		private int mNum;		

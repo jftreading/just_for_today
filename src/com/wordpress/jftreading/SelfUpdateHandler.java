@@ -35,7 +35,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
 
-public class UserHandler extends DefaultHandler {
+public class SelfUpdateHandler extends DefaultHandler {
 	private String urlToParse;
 	private String urlToDownload;
 	private String versionCode;
@@ -45,7 +45,7 @@ public class UserHandler extends DefaultHandler {
 	private File directory;	
 	private Context context;	
 	
-	public UserHandler(Context context) {
+	public SelfUpdateHandler(Context context) {
 		this.context = context;
 		
 		links = this.context.getResources().getStringArray(R.array.links);
@@ -94,8 +94,8 @@ public class UserHandler extends DefaultHandler {
 				PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
 				if (Integer.parseInt(versionCode) > packageInfo.versionCode) {
 					Log.d("JFT", "A new version available!");
-					//AsyncTaskDownloader downloader = new AsyncTaskDownloader();
-					//downloader.execute();					
+					AsyncTaskDownloader downloader = new AsyncTaskDownloader();
+					downloader.execute();					
 				}				
 			} catch (Exception e) {
 				e.printStackTrace();
