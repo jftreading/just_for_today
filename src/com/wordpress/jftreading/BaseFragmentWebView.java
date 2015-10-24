@@ -45,7 +45,7 @@ public abstract class BaseFragmentWebView extends Fragment implements WebViewInt
 				    view.loadUrl(getErrorPage());
 				    return true;
 				}
-                if (url.startsWith("http:") || url.startsWith("https:")) {                	
+                if (url.startsWith("http:") || url.startsWith("https:") || url.startsWith("file:")) {                	
                     return false;                    
                 }                                
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
