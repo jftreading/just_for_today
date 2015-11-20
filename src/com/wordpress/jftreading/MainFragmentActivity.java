@@ -87,7 +87,7 @@ public class MainFragmentActivity extends FragmentActivity {
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			mNum = getArguments() != null ? getArguments().getInt("num") : 1;
-			if (mNum == 3) {
+			if (mNum == 4) {
 				offlinePage = true;
 			} else { 
 				offlinePage = false;
@@ -131,7 +131,7 @@ public class MainFragmentActivity extends FragmentActivity {
 			if (!networkIsUp()) {
 				link = offlineLinks[1];
 			}
-			if (mNum == 3) {
+			if (mNum == 4) {
                             if (savedLink != null) {
                                 link = savedLink;
                             } else {
